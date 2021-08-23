@@ -6,7 +6,7 @@ import image from '../../../assets/images/Saly-16.png';
 import styles from "../PortfolioScreen/styles";
 import UserRankingItem from "../../components/UserRankingItem";
 import { Auth } from 'aws-amplify';
-import {useNavigation} from "@react-navigation/native";
+import {CommonActions, useNavigation} from "@react-navigation/native";
 
 
 
@@ -26,7 +26,14 @@ const ProfileScreen = (props) => {
     const signOut = async () => {
         // sign out shit
         await Auth.signOut();
-        navigation.navigate('WelcomeScreen');
+        navigation.dispatch(
+            CommonActions.reset({
+                index: 1,
+                routes: [
+                    { name: 'WelcomeScreen' },
+                ],
+            })
+        );
     }
 
 

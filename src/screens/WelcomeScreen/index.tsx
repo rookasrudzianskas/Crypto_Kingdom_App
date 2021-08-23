@@ -70,7 +70,14 @@ const WelcomeScreen = (props) => {
     useEffect(() => {
         Hub.listen("auth", ({ payload: { event, data } }) => {
             if(event === "signIn") {
-                    navigation.navigate('Root');
+                navigation.dispatch(
+                    CommonActions.reset({
+                        index: 1,
+                        routes: [
+                            { name: 'Root' },
+                        ],
+                    })
+                );
             }
         });
     }, []);
