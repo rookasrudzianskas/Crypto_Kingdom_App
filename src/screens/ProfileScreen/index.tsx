@@ -25,7 +25,7 @@ const ProfileScreen = (props) => {
 
     const signOut = async () => {
         await Auth.signOut();
-        navigation.navigate('Welcome');
+        navigation.navigate('WelcomeScreen');
     }
 
 

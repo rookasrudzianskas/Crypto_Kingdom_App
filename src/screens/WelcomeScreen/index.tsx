@@ -6,7 +6,7 @@ import styles from "./styles";
 import image from '../../../assets/images/Saly-1.png';
 import {useNavigation} from "@react-navigation/native";
 import {AntDesign} from "@expo/vector-icons";
-import { Auth } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 
 
 // @ts-ignore
@@ -40,6 +40,8 @@ const WelcomeScreen = (props) => {
                 const user = await Auth.currentAuthenticatedUser();
 
                 if(user) {
+                    console.log("user data");
+                    console.log(user);
                     goToRootScreen();
                 }
 
@@ -50,6 +52,16 @@ const WelcomeScreen = (props) => {
 
       fetchUser();
 
+    }, []);
+
+    // hub listens for the auth updates
+
+    useEffect(() => {
+        Hub.listen("auth", ({ payload: { event, data } }) => {
+            if(event === "signIn") {
+                    navigation.navigate('Root');
+            }
+        });
     }, []);
 
 
