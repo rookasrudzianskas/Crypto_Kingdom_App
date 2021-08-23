@@ -23,18 +23,11 @@ const ProfileScreen = (props) => {
 
     const navigation = useNavigation();
 
-    // const goToWelcomeScreen = () => {
-    //     navigation.navigate('Root');
-    // }
-    //
-    // async function signOut() {
-    //     try {
-    //         await Auth.signOut();
-    //         goToWelcomeScreen();
-    //     } catch (error) {
-    //         console.log('error signing out: ', error);
-    //     }
-    // }
+    const signOut = async () => {
+        await Auth.signOut();
+        navigation.navigate('Welcome');
+    }
+
 
     return (
         <View style={[styles.root, tw`bg-blue-700`]}>
