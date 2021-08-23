@@ -118,4 +118,4 @@ export default WelcomeScreen;
 
 /// from this step the amplify is in here
 
-// done
+// done, trying to solve the jeste problem
