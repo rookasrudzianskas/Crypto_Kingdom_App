@@ -14,8 +14,8 @@ const WelcomeScreen = (props) => {
 
     const navigation = useNavigation();
 
-    const goToPortfolioScreen = () => {
-        navigation.navigate('Portfolio');
+    const goToRootScreen = () => {
+        navigation.navigate('Root');
     }
 
 
@@ -25,6 +25,7 @@ const WelcomeScreen = (props) => {
         // @ts-ignore
         // works but there are errors
         await Auth.federatedSignIn({ provider: "Google" });
+
         console.log("DONE");
     }
 
@@ -38,9 +39,10 @@ const WelcomeScreen = (props) => {
             try {
                 const user = await Auth.currentAuthenticatedUser();
 
-                if (user) {
-                    navigation.navigate('Root');
+                if(user) {
+                    goToRootScreen();
                 }
+
             } catch (e) {
                 console.log(e);
             }
