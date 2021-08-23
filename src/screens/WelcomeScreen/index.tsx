@@ -45,6 +45,7 @@ const WelcomeScreen = (props) => {
                     console.log("user data");
                     console.log(user);
                     navigation.navigate('Root');
+                    // prevents some routing issues
                     navigation.dispatch(
                         CommonActions.reset({
                             index: 1,
