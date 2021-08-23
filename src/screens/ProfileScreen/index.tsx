@@ -6,6 +6,7 @@ import image from '../../../assets/images/Saly-16.png';
 import styles from "../PortfolioScreen/styles";
 import UserRankingItem from "../../components/UserRankingItem";
 import { Auth } from 'aws-amplify';
+import {useNavigation} from "@react-navigation/native";
 
 
 
@@ -20,14 +21,20 @@ const ProfileScreen = (props) => {
         image: 'https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg',
     });
 
+    const navigation = useNavigation();
 
-    async function signOut() {
-        try {
-            await Auth.signOut();
-        } catch (error) {
-            console.log('error signing out: ', error);
-        }
-    }
+    // const goToWelcomeScreen = () => {
+    //     navigation.navigate('Root');
+    // }
+    //
+    // async function signOut() {
+    //     try {
+    //         await Auth.signOut();
+    //         goToWelcomeScreen();
+    //     } catch (error) {
+    //         console.log('error signing out: ', error);
+    //     }
+    // }
 
     return (
         <View style={[styles.root, tw`bg-blue-700`]}>
