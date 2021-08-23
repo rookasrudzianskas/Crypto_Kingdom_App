@@ -128,3 +128,4 @@ export default WelcomeScreen;
 /// from this step the amplify is in here
 
 // done, trying to solve the jeste problem
+// jeste map is solved
