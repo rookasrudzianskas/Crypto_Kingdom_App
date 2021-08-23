@@ -30,7 +30,7 @@ const WelcomeScreen = (props) => {
     }
 
     const signInWithApple = () => {
-        console.log("Apple");
+        console.log("Sign in With apple coming soon...");
     }
 
     useEffect(() => {
