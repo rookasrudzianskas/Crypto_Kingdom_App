@@ -7,6 +7,8 @@ import image from '../../../assets/images/Saly-1.png';
 import {useNavigation} from "@react-navigation/native";
 import {AntDesign} from "@expo/vector-icons";
 import { Auth, Hub } from 'aws-amplify';
+import { CommonActions } from '@react-navigation/native';
+
 
 
 // @ts-ignore
@@ -42,7 +44,15 @@ const WelcomeScreen = (props) => {
                 if(user) {
                     console.log("user data");
                     console.log(user);
-                    goToRootScreen();
+                    navigation.navigate('Root');
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            index: 1,
+                            routes: [
+                                { name: 'Root' },
+                            ],
+                        })
+                    );
                 }
 
             } catch (e) {
