@@ -75,3 +75,4 @@ const ProfileScreen = (props) => {
 export default ProfileScreen;
 
 // the sign out button is complete in this project, it redirects back and clears out the stack
+// how that clear stack works, is my main worry
