@@ -24,7 +24,7 @@ const CoinPriceGraph = ({dataString}: CoinPriceGraphProps) => {
             <View style={{display: "flex", alignItems: "center", }}>
                 <LineChart
                     data={{
-                        labels: ["-7 Days", "-6 Days", "-5 Days", "-4 Days", "-3 Days", "-2 Days", "-1 Day", "now"],
+                        labels: ["-7 D", "-6 D", "-5 D", "-4 D", "-3 D", "-2 D", "-1 D", "now"],
                         datasets: [
                             {
                                data,
