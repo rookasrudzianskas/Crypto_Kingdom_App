@@ -46,6 +46,7 @@ const WelcomeScreen = (props) => {
                     console.log(user);
                     navigation.navigate('Root');
                     // prevents some routing issues
+                    // deletes the last stack and starts out from the zero
                     navigation.dispatch(
                         CommonActions.reset({
                             index: 1,
