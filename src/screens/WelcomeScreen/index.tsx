@@ -26,7 +26,7 @@ const WelcomeScreen = (props) => {
         // works but there are errors
         await Auth.federatedSignIn({ provider: "Google" });
 
-        console.log("DONE");
+        // console.log("DONE");
     }
 
     const signInWithApple = () => {
