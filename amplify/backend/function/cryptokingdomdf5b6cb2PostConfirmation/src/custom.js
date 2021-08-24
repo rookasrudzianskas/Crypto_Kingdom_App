@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
       '__typename': { S: 'User' },
       'email': { S: event.request.userAttributes.email },
       'name': { S: event.request.userAttributes.name },
-      'image': { S: event.request.userAttributes.image },
+      'image': { S: event.request.userAttributes.picture },
       'createdAt': { S: date.toISOString() },
       'updatedAt': { S: date.toISOString() },
       'netWorth': { D: 100000.0 },
