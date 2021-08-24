@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
       'image': { S: event.request.userAttributes.picture },
       'createdAt': { S: date.toISOString() },
       'updatedAt': { S: date.toISOString() },
-      'netWorth': { D: 100000.0 },
+      'netWorth': { N: "100000.0" },
     },
     TableName: process.env.USERTABLE,
   }
