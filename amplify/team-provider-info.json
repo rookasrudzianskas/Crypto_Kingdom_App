@@ -13,12 +13,14 @@
     },
     "categories": {
       "auth": {
-        "cryptokingdomdf5b6cb2": {}
+        "cryptokingdomdf5b6cb2": {
+          "googleClientId": "876368740189-bglee0usjqsbn4gu3bsovqul7sgpqu70.apps.googleusercontent.com"
+        }
       },
       "function": {
         "cryptokingdomdf5b6cb2PostConfirmation": {
           "deploymentBucketName": "amplify-cryptokingdom-dev-144358-deployment",
-          "s3Key": "amplify-builds/cryptokingdomdf5b6cb2PostConfirmation-764a6b57626d476c6845-build.zip"
+          "s3Key": "amplify-builds/cryptokingdomdf5b6cb2PostConfirmation-3867536a697537793762-build.zip"
         }
       }
     }
