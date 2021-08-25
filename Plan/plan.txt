@@ -20,6 +20,3 @@ this is the plan 🔥
         "result": {}
     }
 }
-
-
-// probably works
