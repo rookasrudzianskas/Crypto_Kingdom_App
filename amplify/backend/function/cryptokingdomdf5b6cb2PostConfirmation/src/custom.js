@@ -36,3 +36,5 @@ exports.handler = async (event, context) => {
 
   context.done(null, event);
 }
+
+// does not write the user to the dynamo db
