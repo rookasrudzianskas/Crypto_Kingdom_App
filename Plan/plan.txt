@@ -22,3 +22,4 @@ this is the plan 🔥
 }
 
 // trigerring
+// the attributes mapping does work
