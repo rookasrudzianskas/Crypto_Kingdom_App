@@ -194,6 +194,10 @@ Parameters:
   adminQueries:
     Type: String
             
+  authTriggerConnections:
+    Type: String
+  
+            
   hostedUIProviderCreds:
     Type: String
   
@@ -206,10 +210,6 @@ Parameters:
     Type: String
   
             
-            
-  authTriggerConnections:
-    Type: String
-  
             
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]

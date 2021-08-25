@@ -81,6 +81,6 @@
     ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"exp://192.168.0.168:19000/\"],\"LogoutURLs\":[\"exp://192.168.0.168:19000/\"]}",
-    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"cryptokingdomdf5b6cb2PostConfirmation\"\n  }\n]"
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"cryptokingdomdf5b6cb2PostConfirmation\"\n  }\n]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"exp://192.168.0.168:19000/\"],\"LogoutURLs\":[\"exp://192.168.0.168:19000/\"]}"
 }
