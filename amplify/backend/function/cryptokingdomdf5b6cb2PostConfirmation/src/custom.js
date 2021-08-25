@@ -12,30 +12,28 @@ exports.handler = async (event, context) => {
   const date = new Date();
 
   const Item = {
-    Item: {
-      'id': { S: event.request.userAttributes.sub },
-      '__typename': { S: 'User' },
-      'email': { S: event.request.userAttributes.email },
-      'createdAt': { S: date.toISOString() },
-      'updatedAt': { S: date.toISOString() },
-      'networth': { N: "100000.0" },
-    },
+    'id': { S: event.request.userAttributes.sub },
+    '__typename': { S: 'User' },
+    'type': { S: 'User' },
+    'email': { S: event.request.userAttributes.email },
+    'createdAt': { S: date.toISOString() },
+    'updatedAt': { S: date.toISOString() },
+    'networth': { N: "100000.0" }
+  }
 
-    if (event.request.userAttributes.picture) {
-      Item.image = { S: event.request.userAttributes.picture };
-    }
+  if (event.request.userAttributes.picture) {
+    Item.image = { S: event.request.userAttributes.picture };
+  }
 
-
-    if (event.request.userAttributes.name) {
-      Item.image = { S: event.request.userAttributes.name };
-    }
-
-
+  if (event.request.userAttributes.name) {
+    Item.name = { S: event.request.userAttributes.name };
+  }
 
   const params = {
     Item,
     TableName: process.env.USERTABLE,
   }
+
 
   // give the user 100 000 dollars in the future | in 5 minutes
 
