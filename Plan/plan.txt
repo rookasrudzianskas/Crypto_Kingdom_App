@@ -28,3 +28,84 @@ this is the plan 🔥
 // the users in dybamodb are working, then I needed to login to the cognito pool, to use the queries and mutations. I have logged in just with Google account
 and have not have username and password, so I created the account with testing ui, but the confirm does not work. I found out, on user pool, then
 selecting the user you can add it to the group, I have added and it worked out, it got confirmed! I am in! 🐙
+
+
+
+// another showsVerticalScrollIndicator
+
+// const aws = require('aws-sdk');
+// const ddb = new aws.DynamoDB();
+//
+// exports.handler = async (event, context) => {
+//   if (!event.request.userAttributes.sub) {
+//     console.log("Error: No user was written to DynamoDB")
+//     context.done(null, event);
+//     return;
+//   }
+//
+//   // Save the user to DynamoDB
+//   const date = new Date();
+//
+//   const Item = {
+//     'id': { S: event.request.userAttributes.sub },
+//     '__typename': { S: 'User' },
+//     'type': { S: 'User' },
+//     'email': { S: event.request.userAttributes.email },
+//     'createdAt': { S: date.toISOString() },
+//     'updatedAt': { S: date.toISOString() },
+//     'networth': { N: "100000.0" }
+//   }
+//
+//   if (event.request.userAttributes.picture) {
+//     Item.image = { S: event.request.userAttributes.picture };
+//   }
+//
+//   if (event.request.userAttributes.name) {
+//     Item.name = { S: event.request.userAttributes.name };
+//   }
+//
+//   const params = {
+//     Item,
+//     TableName: process.env.USERTABLE,
+//   }
+//
+//   try {
+//     await ddb.putItem(params).promise();
+//     console.log("Success");
+//   } catch (e) {
+//     console.log("Error", e);
+//   }
+//
+//   context.done(null, event);
+//
+// // ---------------------------------------
+//
+//
+//   // give the user 100 000 dollars in the future | in 5 minutes
+//
+//   const PortfolionCoinItem = {
+//     'id': { S: `${event.request.userAttributes.sub}-usd` },
+//     '__typename': { S: 'PortfolioCoin' },
+//     'createdAt': { S: date.toISOString() },
+//     'updatedAt': { S: date.toISOString() },
+//     'userId': { S: event.request.userAttributes.sub },
+//     'coinId': { S: process.env.USD_COIN_ID },
+//     'amount': { N: "100000.0" }
+//   }
+//
+//   try {
+//     await ddb.putItem({
+//       Item: PortfolionCoinItem,
+//       TableName: process.env.PORTFOLIO_COIN_TABLE,
+//     }).promise();
+//     console.log("Success");
+//   } catch (e) {
+//     console.log("Error", e);
+//   }
+//   context.done(null, event);
+// }
+//
+// // ---------------------------------------
+//
+//
+// // does not write the user to the dynamo db
