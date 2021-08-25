@@ -41,6 +41,13 @@ exports.handler = async (event, context) => {
     console.log("Error", e);
   }
 
+  context.done(null, event);
+
+// ---------------------------------------
+
+
+  // give the user 100 000 dollars in the future | in 5 minutes
+
   const PortfolionCoinItem = {
     'id': { S: `${event.request.userAttributes.sub}-usd` },
     '__typename': { S: 'PortfolioCoin' },
@@ -63,6 +70,7 @@ exports.handler = async (event, context) => {
   context.done(null, event);
 }
 
+// ---------------------------------------
 
 
-
+// does not write the user to the dynamo db
