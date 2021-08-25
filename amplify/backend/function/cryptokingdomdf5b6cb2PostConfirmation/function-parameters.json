@@ -13,5 +13,7 @@
   "triggerEventPath": "PostConfirmation.event.json",
   "roleName": "cryptokingdomdf5b6cb2PostConfirmation",
   "skipEdit": true,
+  "deploymentBucketName": "amplify-cryptokingdom-dev-144358-deployment",
+  "s3Key": "amplify-builds/cryptokingdomdf5b6cb2PostConfirmation-3867536a697537793762-build.zip",
   "enableCors": false
 }

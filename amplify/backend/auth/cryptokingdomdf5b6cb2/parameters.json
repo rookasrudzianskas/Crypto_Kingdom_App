@@ -50,7 +50,7 @@
     },
     "useDefault": "manual",
     "hostedUI": true,
-    "triggers": "{}",
+    "triggers": "{\n  \"PostConfirmation\": [\n    \"custom\"\n  ]\n}",
     "hostedUIDomainName": "cryptokingdomdf5b6cb2-df5b6cb2",
     "authProvidersUserPool": [
         "Google"
@@ -64,12 +64,23 @@
     },
     "breakCircularDependency": true,
     "permissions": [],
-    "dependsOn": [],
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "cryptokingdomdf5b6cb2PostConfirmation",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ],
     "thirdPartyAuth": true,
     "authProviders": [
         "accounts.google.com"
     ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"exp://127.0.0.1:19000/\"],\"LogoutURLs\":[\"exp://127.0.0.1:19000/\"]}"
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"implicit\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"exp://192.168.0.168:19000/\"],\"LogoutURLs\":[\"exp://192.168.0.168:19000/\"]}",
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"cryptokingdomdf5b6cb2PostConfirmation\"\n  }\n]"
 }

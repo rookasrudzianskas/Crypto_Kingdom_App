@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
     TableName: process.env.USERTABLE,
   }
 
-      // give the user 100 000 dollars in the future | in 5 minutes
+  // give the user 100 000 dollars in the future | in 5 minutes
 
   try {
     await ddb.putItem(params).promise();

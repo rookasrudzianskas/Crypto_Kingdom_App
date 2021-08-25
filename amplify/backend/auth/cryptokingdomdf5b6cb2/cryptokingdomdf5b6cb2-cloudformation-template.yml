@@ -10,6 +10,18 @@ Parameters:
     Type: String
 
   
+  
+  
+  functioncryptokingdomdf5b6cb2PostConfirmationArn:
+    Type: String
+    Default: functioncryptokingdomdf5b6cb2PostConfirmationArn
+  
+  functioncryptokingdomdf5b6cb2PostConfirmationName:
+    Type: String
+    Default: functioncryptokingdomdf5b6cb2PostConfirmationName
+  
+  
+  
 
     
   identityPoolName:
@@ -166,10 +178,6 @@ Parameters:
   dependsOn:
     Type: CommaDelimitedList
       
-  hostedUIProviderCreds:
-    Type: String
-  
-            
   
   thirdPartyAuth:
     Type: String
@@ -178,10 +186,6 @@ Parameters:
   authProviders:
     Type: CommaDelimitedList
       
-  googleClientId:
-    Type: String
-  
-            
   
   userPoolGroups:
     Type: String
@@ -190,10 +194,22 @@ Parameters:
   adminQueries:
     Type: String
             
+  hostedUIProviderCreds:
+    Type: String
+  
+            
+  googleClientId:
+    Type: String
+  
+            
   oAuthMetadata:
     Type: String
   
             
+            
+  authTriggerConnections:
+    Type: String
+  
             
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
