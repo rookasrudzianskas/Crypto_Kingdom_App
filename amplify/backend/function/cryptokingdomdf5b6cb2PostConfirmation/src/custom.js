@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
 
   // give the user 100 000 dollars in the future | in 5 minutes
 
-  const PortfolionCoinItem = {
+  const PortfolioCoinItem = {
     'id': { S: `${event.request.userAttributes.sub}-usd` },
     '__typename': { S: 'PortfolioCoin' },
     'createdAt': { S: date.toISOString() },
@@ -60,7 +60,7 @@ exports.handler = async (event, context) => {
 
   try {
     await ddb.putItem({
-      Item: PortfolionCoinItem,
+      Item: PortfolioCoinItem,
       TableName: process.env.PORTFOLIO_COIN_TABLE,
     }).promise();
     console.log("Success");
