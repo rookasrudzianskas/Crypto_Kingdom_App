@@ -8,7 +8,7 @@ type User @model {
   portfolioCoins: [PortfolioCoin] @connection(keyName: "byUser", fields: ["id"])
 }
 
-type PortfolioCoin @model @key(name: "byUser", fields: ["userId"]) {
+type PortfolioCoin @model(mutations: null) @key(name: "byUser", fields: ["userId"]) {
   id: ID!
   amount: Float!
 
