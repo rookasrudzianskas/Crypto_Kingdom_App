@@ -51,7 +51,7 @@ exports.handler = async (event, context) => {
     '__typename': { S: 'PortfolioCoin' },
     'createdAt': { S: date.toISOString() },
     'updatedAt': { S: date.toISOString() },
-    'userId': { S: event.request.userAttributes.sub },
+    'userId': { S: 'event.request.userAttributes.sub' },
     'coinId': { S: process.env.USD_COIN_ID },
     'amount': { N: "100000.0" }
   }
