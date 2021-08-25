@@ -34,3 +34,4 @@ type Coin @model(mutations: null) {
 }
 
 
+# new
