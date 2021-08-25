@@ -29,6 +29,9 @@ this is the plan 🔥
 and have not have username and password, so I created the account with testing ui, but the confirm does not work. I found out, on user pool, then
 selecting the user you can add it to the group, I have added and it worked out, it got confirmed! I am in! 🐙
 
+// Moving on, every user 100K does not work
+
+
 
 
 // another showsVerticalScrollIndicator
