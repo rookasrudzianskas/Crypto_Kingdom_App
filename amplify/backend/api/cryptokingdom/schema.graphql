@@ -32,6 +32,3 @@ type Coin @model(mutations: null) {
   valueChange7D: Float!
   priceHistoryString: String
 }
-
-
-# new
