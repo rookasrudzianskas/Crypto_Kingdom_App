@@ -6,8 +6,20 @@ type User @model {
   networth: Float!
 }
 
+type PortfolioCoins @model @key(name: "byUser", fields: ["userId"]) {
+  id: ID!
+
+  userId: ID!
+  user: User @connection(fields: ["userId"])
+
+  coinId: ID!
+  coin: Coin @connection(fields: ["coinId"])
+}
+
+
 type Coin @model {
   id: ID!
+  cgId: String!
   name: String!
   symbol: String!
   image: String
@@ -17,3 +29,5 @@ type Coin @model {
   valueChange7D: Float!
   priceHistoryString: String
 }
+
+
