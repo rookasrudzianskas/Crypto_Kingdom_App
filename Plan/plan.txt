@@ -24,3 +24,4 @@ this is the plan 🔥
 // trigerring
 // the attributes mapping does work
 // working on writing to DynamoDB
+// alright, users from cognito pool are going straight to the dynamo db! It works, this shit works 🔥
