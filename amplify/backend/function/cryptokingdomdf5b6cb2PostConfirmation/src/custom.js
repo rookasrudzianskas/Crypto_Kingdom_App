@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
       // give the user 100 000 dollars
 
   try {
-    await ddb.putItem(params).promise();
+    await ddb.put(params).promise();
     console.log("Success");
   } catch (e) {
     console.log("Error", e);
