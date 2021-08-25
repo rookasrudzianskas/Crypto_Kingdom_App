@@ -1,0 +1,3 @@
+this is the plan 🔥
+
+1. Finally have managed to fix the lambda function trigerring and setting the user. NOw, just need to clarify what is going on with the user.
