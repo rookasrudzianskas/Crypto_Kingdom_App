@@ -31,7 +31,7 @@ selecting the user you can add it to the group, I have added and it worked out, 
 
 // Moving on, every user 100K does not work
 
-
+// we are moving forward, but the lamba function is successfully published to aws, but does not trigger the function to add 100K to each user.
 
 
 // another showsVerticalScrollIndicator
