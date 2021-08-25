@@ -34,6 +34,18 @@ exports.handler = async (event, context) => {
     TableName: process.env.USERTABLE,
   }
 
+  try {
+    await ddb.putItem(params).promise();
+    console.log("Success");
+  } catch (e) {
+    console.log("Error", e);
+  }
+
+  context.done(null, event);
+}
+
+// ---------------------------------------
+
 
   // give the user 100 000 dollars in the future | in 5 minutes
 
@@ -48,15 +60,7 @@ exports.handler = async (event, context) => {
   }
 
 
+// ---------------------------------------
 
-  try {
-    await ddb.putItem(params).promise();
-    console.log("Success");
-  } catch (e) {
-    console.log("Error", e);
-  }
-
-  context.done(null, event);
-}
 
 // does not write the user to the dynamo db
