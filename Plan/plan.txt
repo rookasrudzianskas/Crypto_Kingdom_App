@@ -1,3 +1,23 @@
 this is the plan 🔥
 
 1. Finally have managed to fix the lambda function trigerring and setting the user. NOw, just need to clarify what is going on with the user.
+
+
+
+
+// lambda was triggered
+
+2021-08-25T08:27:12.341Z	935f3052-e406-4cbe-be01-a9556cdf31ba	INFO	Response body:
+ {
+    "Status": "SUCCESS",
+    "Reason": "See the details in CloudWatch Log Stream: 2021/08/25/[$LATEST]874f7df65f2242d29360bc08329685b2",
+    "PhysicalResourceId": "2021/08/25/[$LATEST]874f7df65f2242d29360bc08329685b2",
+    "StackId": "arn:aws:cloudformation:us-east-1:986698840618:stack/amplify-cryptokingdom-dev-144358-AuthTriggerCustomLambdaStack-SKDWN2018ESI/22e98430-057e-11ec-82ef-0a90b79301c3",
+    "RequestId": "0e678d58-5ba7-4a36-972c-c334827f906e",
+    "LogicalResourceId": "CustomAuthTriggerResource",
+    "NoEcho": false,
+    "Data": {
+        "result": {}
+    }
+}
+
