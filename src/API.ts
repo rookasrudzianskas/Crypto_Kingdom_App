@@ -79,6 +79,41 @@ export type User = {
   email: string,
   image?: string | null,
   networth: number,
+  portfolioCoins?: ModelPortfolioCoinConnection | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type ModelPortfolioCoinConnection = {
+  __typename: "ModelPortfolioCoinConnection",
+  items?:  Array<PortfolioCoin | null > | null,
+  nextToken?: string | null,
+};
+
+export type PortfolioCoin = {
+  __typename: "PortfolioCoin",
+  id: string,
+  amount: number,
+  userId: string,
+  user?: User | null,
+  coinId: string,
+  coin?: Coin | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type Coin = {
+  __typename: "Coin",
+  id: string,
+  cgId: string,
+  name: string,
+  symbol: string,
+  image?: string | null,
+  currentPrice: number,
+  valueChange24H: number,
+  valueChange1D: number,
+  valueChange7D: number,
+  priceHistoryString?: string | null,
   createdAt: string,
   updatedAt: string,
 };
@@ -128,6 +163,38 @@ export type ModelUserConnection = {
   nextToken?: string | null,
 };
 
+export type ModelPortfolioCoinFilterInput = {
+  id?: ModelIDInput | null,
+  amount?: ModelFloatInput | null,
+  userId?: ModelIDInput | null,
+  coinId?: ModelIDInput | null,
+  and?: Array< ModelPortfolioCoinFilterInput | null > | null,
+  or?: Array< ModelPortfolioCoinFilterInput | null > | null,
+  not?: ModelPortfolioCoinFilterInput | null,
+};
+
+export type ModelCoinFilterInput = {
+  id?: ModelIDInput | null,
+  cgId?: ModelStringInput | null,
+  name?: ModelStringInput | null,
+  symbol?: ModelStringInput | null,
+  image?: ModelStringInput | null,
+  currentPrice?: ModelFloatInput | null,
+  valueChange24H?: ModelFloatInput | null,
+  valueChange1D?: ModelFloatInput | null,
+  valueChange7D?: ModelFloatInput | null,
+  priceHistoryString?: ModelStringInput | null,
+  and?: Array< ModelCoinFilterInput | null > | null,
+  or?: Array< ModelCoinFilterInput | null > | null,
+  not?: ModelCoinFilterInput | null,
+};
+
+export type ModelCoinConnection = {
+  __typename: "ModelCoinConnection",
+  items?:  Array<Coin | null > | null,
+  nextToken?: string | null,
+};
+
 export type CreateUserMutationVariables = {
   input: CreateUserInput,
   condition?: ModelUserConditionInput | null,
@@ -141,6 +208,19 @@ export type CreateUserMutation = {
     email: string,
     image?: string | null,
     networth: number,
+    portfolioCoins?:  {
+      __typename: "ModelPortfolioCoinConnection",
+      items?:  Array< {
+        __typename: "PortfolioCoin",
+        id: string,
+        amount: number,
+        userId: string,
+        coinId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -159,6 +239,19 @@ export type UpdateUserMutation = {
     email: string,
     image?: string | null,
     networth: number,
+    portfolioCoins?:  {
+      __typename: "ModelPortfolioCoinConnection",
+      items?:  Array< {
+        __typename: "PortfolioCoin",
+        id: string,
+        amount: number,
+        userId: string,
+        coinId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -177,6 +270,19 @@ export type DeleteUserMutation = {
     email: string,
     image?: string | null,
     networth: number,
+    portfolioCoins?:  {
+      __typename: "ModelPortfolioCoinConnection",
+      items?:  Array< {
+        __typename: "PortfolioCoin",
+        id: string,
+        amount: number,
+        userId: string,
+        coinId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -194,6 +300,19 @@ export type GetUserQuery = {
     email: string,
     image?: string | null,
     networth: number,
+    portfolioCoins?:  {
+      __typename: "ModelPortfolioCoinConnection",
+      items?:  Array< {
+        __typename: "PortfolioCoin",
+        id: string,
+        amount: number,
+        userId: string,
+        coinId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -215,6 +334,152 @@ export type ListUsersQuery = {
       email: string,
       image?: string | null,
       networth: number,
+      portfolioCoins?:  {
+        __typename: "ModelPortfolioCoinConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetPortfolioCoinQueryVariables = {
+  id: string,
+};
+
+export type GetPortfolioCoinQuery = {
+  getPortfolioCoin?:  {
+    __typename: "PortfolioCoin",
+    id: string,
+    amount: number,
+    userId: string,
+    user?:  {
+      __typename: "User",
+      id: string,
+      name?: string | null,
+      email: string,
+      image?: string | null,
+      networth: number,
+      portfolioCoins?:  {
+        __typename: "ModelPortfolioCoinConnection",
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    coinId: string,
+    coin?:  {
+      __typename: "Coin",
+      id: string,
+      cgId: string,
+      name: string,
+      symbol: string,
+      image?: string | null,
+      currentPrice: number,
+      valueChange24H: number,
+      valueChange1D: number,
+      valueChange7D: number,
+      priceHistoryString?: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListPortfolioCoinsQueryVariables = {
+  filter?: ModelPortfolioCoinFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPortfolioCoinsQuery = {
+  listPortfolioCoins?:  {
+    __typename: "ModelPortfolioCoinConnection",
+    items?:  Array< {
+      __typename: "PortfolioCoin",
+      id: string,
+      amount: number,
+      userId: string,
+      user?:  {
+        __typename: "User",
+        id: string,
+        name?: string | null,
+        email: string,
+        image?: string | null,
+        networth: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      coinId: string,
+      coin?:  {
+        __typename: "Coin",
+        id: string,
+        cgId: string,
+        name: string,
+        symbol: string,
+        image?: string | null,
+        currentPrice: number,
+        valueChange24H: number,
+        valueChange1D: number,
+        valueChange7D: number,
+        priceHistoryString?: string | null,
+        createdAt: string,
+        updatedAt: string,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetCoinQueryVariables = {
+  id: string,
+};
+
+export type GetCoinQuery = {
+  getCoin?:  {
+    __typename: "Coin",
+    id: string,
+    cgId: string,
+    name: string,
+    symbol: string,
+    image?: string | null,
+    currentPrice: number,
+    valueChange24H: number,
+    valueChange1D: number,
+    valueChange7D: number,
+    priceHistoryString?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListCoinsQueryVariables = {
+  filter?: ModelCoinFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListCoinsQuery = {
+  listCoins?:  {
+    __typename: "ModelCoinConnection",
+    items?:  Array< {
+      __typename: "Coin",
+      id: string,
+      cgId: string,
+      name: string,
+      symbol: string,
+      image?: string | null,
+      currentPrice: number,
+      valueChange24H: number,
+      valueChange1D: number,
+      valueChange7D: number,
+      priceHistoryString?: string | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -230,6 +495,19 @@ export type OnCreateUserSubscription = {
     email: string,
     image?: string | null,
     networth: number,
+    portfolioCoins?:  {
+      __typename: "ModelPortfolioCoinConnection",
+      items?:  Array< {
+        __typename: "PortfolioCoin",
+        id: string,
+        amount: number,
+        userId: string,
+        coinId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -243,6 +521,19 @@ export type OnUpdateUserSubscription = {
     email: string,
     image?: string | null,
     networth: number,
+    portfolioCoins?:  {
+      __typename: "ModelPortfolioCoinConnection",
+      items?:  Array< {
+        __typename: "PortfolioCoin",
+        id: string,
+        amount: number,
+        userId: string,
+        coinId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -256,6 +547,19 @@ export type OnDeleteUserSubscription = {
     email: string,
     image?: string | null,
     networth: number,
+    portfolioCoins?:  {
+      __typename: "ModelPortfolioCoinConnection",
+      items?:  Array< {
+        __typename: "PortfolioCoin",
+        id: string,
+        amount: number,
+        userId: string,
+        coinId: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken?: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,

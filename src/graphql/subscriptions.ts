@@ -10,6 +10,17 @@ export const onCreateUser = /* GraphQL */ `
       email
       image
       networth
+      portfolioCoins {
+        items {
+          id
+          amount
+          userId
+          coinId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -23,6 +34,17 @@ export const onUpdateUser = /* GraphQL */ `
       email
       image
       networth
+      portfolioCoins {
+        items {
+          id
+          amount
+          userId
+          coinId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -36,6 +58,17 @@ export const onDeleteUser = /* GraphQL */ `
       email
       image
       networth
+      portfolioCoins {
+        items {
+          id
+          amount
+          userId
+          coinId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
