@@ -1,4 +1,4 @@
-type User @model {
+type User @model(mutations: null) {
   id: ID!
   name: String
   email: String!
