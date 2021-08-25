@@ -3,5 +3,5 @@ type User @model {
   name: String!
   email: String!
   image: String
-  netWorth: Float!
+  networth: Float!
 }
