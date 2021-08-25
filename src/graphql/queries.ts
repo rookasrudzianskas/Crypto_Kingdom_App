@@ -9,7 +9,7 @@ export const getUser = /* GraphQL */ `
       name
       email
       image
-      netWorth
+      networth
       createdAt
       updatedAt
     }
@@ -27,7 +27,7 @@ export const listUsers = /* GraphQL */ `
         name
         email
         image
-        netWorth
+        networth
         createdAt
         updatedAt
       }

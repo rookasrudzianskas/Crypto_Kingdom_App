@@ -9,7 +9,7 @@ export const onCreateUser = /* GraphQL */ `
       name
       email
       image
-      netWorth
+      networth
       createdAt
       updatedAt
     }
@@ -22,7 +22,7 @@ export const onUpdateUser = /* GraphQL */ `
       name
       email
       image
-      netWorth
+      networth
       createdAt
       updatedAt
     }
@@ -35,7 +35,7 @@ export const onDeleteUser = /* GraphQL */ `
       name
       email
       image
-      netWorth
+      networth
       createdAt
       updatedAt
     }
