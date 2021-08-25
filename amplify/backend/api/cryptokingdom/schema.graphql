@@ -4,10 +4,13 @@ type User @model {
   email: String!
   image: String
   networth: Float!
+
+  portfolioCoins: [PortfolioCoin] @connection(keyName: "byUser", fields: ["id"])
 }
 
-type PortfolioCoins @model @key(name: "byUser", fields: ["userId"]) {
+type PortfolioCoin @model @key(name: "byUser", fields: ["userId"]) {
   id: ID!
+  amount: Float!
 
   userId: ID!
   user: User @connection(fields: ["userId"])
@@ -23,7 +26,7 @@ type Coin @model {
   name: String!
   symbol: String!
   image: String
-  current_price: Float!
+  currentPrice: Float!
   valueChange24H: Float!
   valueChange1D: Float!
   valueChange7D: Float!
