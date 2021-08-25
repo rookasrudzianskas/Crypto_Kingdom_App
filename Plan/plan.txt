@@ -23,3 +23,4 @@ this is the plan 🔥
 
 // trigerring
 // the attributes mapping does work
+// working on writing to DynamoDB
