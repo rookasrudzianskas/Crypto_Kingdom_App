@@ -20,7 +20,7 @@ type PortfolioCoin @model @key(name: "byUser", fields: ["userId"]) {
 }
 
 
-type Coin @model {
+type Coin @model(mutations: null) {
   id: ID!
   cgId: String!
   name: String!
