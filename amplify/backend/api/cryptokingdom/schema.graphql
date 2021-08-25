@@ -5,3 +5,15 @@ type User @model {
   image: String
   networth: Float!
 }
+
+type Coin @model {
+  id: ID!
+  name: String!
+  symbol: String!
+  image: String
+  current_price: Float!
+  valueChange24H: Float!
+  valueChange1D: Float!
+  valueChange7D: Float!
+  priceHistoryString: String
+}
