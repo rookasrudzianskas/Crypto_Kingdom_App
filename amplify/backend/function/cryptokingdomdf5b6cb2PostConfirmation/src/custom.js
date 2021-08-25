@@ -42,7 +42,6 @@ exports.handler = async (event, context) => {
   }
 
   context.done(null, event);
-}
 
 // ---------------------------------------
 
@@ -69,6 +68,7 @@ try {
   console.log("Error", e);
 }
   context.done(null, event);
+
 }
 
 // ---------------------------------------
