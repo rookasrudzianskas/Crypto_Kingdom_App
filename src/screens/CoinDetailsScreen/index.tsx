@@ -362,7 +362,7 @@ const CoinDetailsScreen = () => {
         {/*    chart ends in here*/}
 
 
-        {/*    bottom side with differnces */}
+        {/*    bottom side with differences */}
 
             <View style={tw`flex flex-row mx-8 mt-10`}>
                 <View style={tw`flex w-1/3`}>
