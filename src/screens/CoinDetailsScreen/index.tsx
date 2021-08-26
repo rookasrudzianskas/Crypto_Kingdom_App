@@ -201,8 +201,13 @@ const CoinDetailsScreen = () => {
     const route = useRoute();
 
     if(!coinData) {
-        return  <View style={tw`mt-24 items-center justify-center`}>
+        return  <View style={tw`mt-24 flex items-center justify-center`}>
+            <View style={tw`mb-10`}>
+                <Text style={tw`text-xl text-blue-500 font-medium`}>The Coin Data is loading... 🚀</Text>
+            </View>
+            <View style={tw`flex items-center justify-center`}>
             <ActivityIndicator animating={true} color={"#9AA2F8"} size="large" hidesWhenStopped={true} />
+            </View>
         </View>
 
     }
