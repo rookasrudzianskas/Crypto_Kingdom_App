@@ -343,7 +343,7 @@ const CoinDetailsScreen = () => {
             {/*chart goes in here*/}
 
     {/*// @ts-ignore*/}
-            {coin?.priceHistoryString &&
+            {coin?.priceHistoryString ? (
 
             <View style={tw`flex items-center`}>
     {/*// @ts-ignore*/}
@@ -351,7 +351,13 @@ const CoinDetailsScreen = () => {
     {/*// @ts-ignore*/}
                 <CoinPriceGraph dataString={coin.priceHistoryString} />
             </View>
-            }
+            ) : (
+                <View style={tw`flex items-center`}>
+                    <Text style={tw`text-2xl text-white font-bold mt-5 mb-5`}>Price Graph (If Available)</Text>
+
+                    <Text style={tw`text-sm text-white font-thin mt-5 mb-5 text-center`}>Currently the price graph is not available for this coin.</Text>
+                </View>
+            )}
 
         {/*    chart ends in here*/}
 
