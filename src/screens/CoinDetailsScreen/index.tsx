@@ -215,7 +215,9 @@ const CoinDetailsScreen = () => {
 
         try {
             const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
-            setCoin(response.data.getCoin);
+            console.log("This is the response of getCoin")
+            console.log(response);
+            // setCoin(response.data.getCoin);
         } catch (e) {
             console.log(e);
         }
