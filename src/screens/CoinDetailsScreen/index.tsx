@@ -294,7 +294,7 @@ const CoinDetailsScreen = () => {
             {/*chart goes in here*/}
 
             <View style={tw`flex items-center`}>
-                <Text style={tw`text-2xl text-white font-bold mt-5 mb-5`}>Bitcoin Price Graph</Text>
+                <Text style={tw`text-2xl text-white font-bold mt-5 mb-5`}>{coin.name} Price Graph</Text>
     {/*// @ts-ignore*/}
                 <CoinPriceGraph dataString={historyString} />
             </View>
