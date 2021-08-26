@@ -1,8 +1,6 @@
 /* Amplify Params - DO NOT EDIT
 	API_CRYPTOKINGDOM_GRAPHQLAPIENDPOINTOUTPUT
 	API_CRYPTOKINGDOM_GRAPHQLAPIIDOUTPUT
-	ENV
-	REGION
 Amplify Params - DO NOT EDIT */
 
 const { CognitoIdentityServiceProvider } = require('aws-sdk');
