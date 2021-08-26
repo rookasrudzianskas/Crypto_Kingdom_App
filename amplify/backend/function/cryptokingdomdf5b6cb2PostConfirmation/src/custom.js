@@ -69,4 +69,15 @@ exports.handler = async (event, context) => {
 }
 
 
-// does not write the user to the dynamo db
+// writes the user, but does not add 100K
+
+
+
+
+
+
+
+
+
+
+
