@@ -202,6 +202,11 @@ const CoinDetailsScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
 
+
+    useEffect(() => {
+        fetchCoinData();
+    }, []);
+
     const fetchCoinData = async () => {
 
         if(!route.params.id) {
@@ -210,7 +215,6 @@ const CoinDetailsScreen = () => {
 
         try {
             const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
-            console.log(response)
             setCoin(response.data.getCoin);
         } catch (e) {
             console.log(e);
@@ -218,10 +222,6 @@ const CoinDetailsScreen = () => {
     }
 
 
-    useEffect(() => {
-        fetchCoinData();
-    }, []);
-    console.log("THis is the coin", coin);
 
 
     if(!coin) {
