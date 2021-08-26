@@ -54,6 +54,7 @@ const MarketScreen = (props) => {
         try {
             const response = await API.graphql(graphqlOperation(listCoins));
             // @ts-ignore
+            // console.log("🍚", response.data.listCoins.items);
             setCoins(response.data.listCoins.items);
         } catch (e) {
             console.log(e);
