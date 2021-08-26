@@ -201,7 +201,9 @@ const CoinDetailsScreen = () => {
     const route = useRoute();
 
     if(!coinData) {
-        return  <ActivityIndicator size="large" />
+        return  <View style={tw`mt-24 items-center justify-center`}>
+            <ActivityIndicator animating={true} color={"#9AA2F8"} size="large" hidesWhenStopped={true} />
+        </View>
 
     }
     const onSell = () => {
