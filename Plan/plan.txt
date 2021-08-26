@@ -35,6 +35,8 @@ selecting the user you can add it to the group, I have added and it worked out, 
 
 let's see what is going to happen here
 
+??!! alright, managed to make it working! It puts the user to the DynamoDB and sets 100K to each user in PortfolioCoin Table! Fucking amazing!
+
 
 
 // --------------------
