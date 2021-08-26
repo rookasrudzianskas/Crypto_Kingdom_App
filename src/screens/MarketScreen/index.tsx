@@ -46,15 +46,19 @@ import {listCoins} from "../../graphql/queries";
 const MarketScreen = (props) => {
 
     const [coins, setCoins] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
     const fetchCoins = async () => {
+        setLoading(true);
         try {
             const response = await API.graphql(graphqlOperation(listCoins));
             // @ts-ignore
             setCoins(response.data.listCoins.items);
         } catch (e) {
             console.log(e);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -71,7 +75,7 @@ const MarketScreen = (props) => {
                 </View>
             </>
             {/*<View style={tw`bg-blu`}>*/}
-            <FlatList showsVerticalScrollIndicator={false} style={{width: '100%'}} data={coins} renderItem={({item}) => <MarketCoin portfolioCoin={item}  />}/>
+            <FlatList onRefresh={fetchCoins} refreshing={loading} showsVerticalScrollIndicator={false} style={{width: '100%'}} data={coins} renderItem={({item}) => <MarketCoin portfolioCoin={item}  />}/>
             {/*</View>*/}
         </View>
     );
