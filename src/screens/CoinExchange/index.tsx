@@ -58,6 +58,10 @@ const CoinExchangeScreen = () => {
 
     }, [coinUSDValue]);
 
+    const placeOrder = async () => {
+
+    }
+
     const onPlaceOrder = () => {
         if(isBuy && parseFloat(coinUSDValue) > maxUSD) {
             Alert.alert('Error', `Not enough USD coins. Max: ${maxUSD}`);
@@ -68,6 +72,8 @@ const CoinExchangeScreen = () => {
             Alert.alert('Error', `Not enough ${coin?.symbol} currency coins. Max: ${coinAmount || 0}`);
             return;
         }
+
+        placeOrder();
     };
 
 
