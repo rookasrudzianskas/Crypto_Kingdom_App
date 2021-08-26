@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "api": {
+      "cryptokingdom": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

@@ -21,6 +21,10 @@
         "cryptokingdomdf5b6cb2PostConfirmation": {
           "deploymentBucketName": "amplify-cryptokingdom-dev-144358-deployment",
           "s3Key": "amplify-builds/cryptokingdomdf5b6cb2PostConfirmation-494c7a45574262787473-build.zip"
+        },
+        "cryptoKindomSubmitOrder": {
+          "deploymentBucketName": "amplify-cryptokingdom-dev-144358-deployment",
+          "s3Key": "amplify-builds/cryptoKindomSubmitOrder-6d7879636c2f4141782f-build.zip"
         }
       }
     }

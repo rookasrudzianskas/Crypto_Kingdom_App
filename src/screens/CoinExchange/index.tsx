@@ -17,12 +17,14 @@ const CoinExchangeScreen = () => {
     // @ts-ignore
     const isBuy = route?.params?.isBuy;
     // @ts-ignore
-    const coinData = route?.params?.coinData;
+    const coin = route?.params?.coin;
+    // @ts-ignore
+    const portfolioCoin = route?.params?.portfolioCoin;
 
     const [coinAmount, setCoinAmount] = useState('');
     const [coinUSDValue, setCoinUSDValue] = useState('');
 
-    const maxUSD = 100000;
+    const maxUSD = 100000;//  @TODO fetch from API
 
 
     useEffect(() => {
@@ -35,7 +37,7 @@ const CoinExchangeScreen = () => {
             return;
         }
         // setCoinAmount(amount.toString());
-        setCoinUSDValue((amount * coinData?.currentPrice).toString());
+        setCoinUSDValue((amount * coin?.currentPrice).toString());
 
 
     }, [coinAmount]);
@@ -51,19 +53,20 @@ const CoinExchangeScreen = () => {
             return;
         }
         // setCoinAmount(amount.toString());
-        setCoinAmount((amount / coinData?.currentPrice).toString());
+        setCoinAmount((amount / coin?.currentPrice).toString());
 
 
     }, [coinUSDValue]);
 
     const onPlaceOrder = () => {
+        console.log("Works")
         if(isBuy && parseFloat(coinUSDValue) > maxUSD) {
             Alert.alert('Error', `Not enough USD coins. Max: ${maxUSD}`);
             return;
         }
 
-        if(!isBuy && parseFloat(coinAmount) > coinData.amount) {
-            Alert.alert('Error', `Not enough ${coinData?.symbol} currency coins. Max: ${coinAmount}`);
+        if(!isBuy && (!portfolioCoin || parseFloat(coinAmount) > portfolioCoin.amount)) {
+            Alert.alert('Error', `Not enough ${coin?.symbol} currency coins. Max: ${coinAmount || 0}`);
             return;
         }
     };
@@ -78,14 +81,14 @@ const CoinExchangeScreen = () => {
             <View style={tw`items-center`}>
                 <Text style={ [tw` mt-16 text-white text-3xl font-medium`]}>
                     {isBuy ? "Buy " : " Sell "}
-                    {coinData?.name}
+                    {coin?.name}
                 </Text>
 
                 <View style={tw``}>
                     <Text style={tw`text-white text-xl font-medium mt-5`}>
-                        1 {coinData?.symbol}
+                        1 {coin?.symbol}
                         {" = "}
-                        ${coinData?.currentPrice}
+                        ${coin?.currentPrice}
                     </Text>
                 </View>
 
@@ -101,7 +104,7 @@ const CoinExchangeScreen = () => {
                 <View style={tw`flex items-center bg-blue-400 p-5 rounded-lg`}>
         {/*// @ts-ignore*/}
                     <TextInput keyboardType="decimal-pad" value={coinAmount} onChangeText={setCoinAmount} style={tw`bg-white px-6 py-3 font-bold text-gray-500 text-lg rounded-lg`} placeholder={"0"} />
-                    <Text style={tw`text-white text-xl font-bold mt-3`}>{coinData?.name}</Text>
+                    <Text style={tw`text-white text-xl font-bold mt-3`}>{coin?.name}</Text>
                 </View>
 
                 <View style={tw``}>
