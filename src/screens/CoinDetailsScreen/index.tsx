@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity} from "react-native";
+import {View, Text, Image, TouchableOpacity, ActivityIndicator, ActivityIndicatorComponent} from "react-native";
 import styles from "../../components/MarketCoin/style";
 import tw from "tailwind-react-native-classnames";
 import {AntDesign} from "@expo/vector-icons";
 import PercentageChange from "../../components/PercentageChange";
 import CoinPriceGraph from "../../components/CoinPriceGraph";
-import {useNavigation} from "@react-navigation/native";
+import {useNavigation, useRoute} from "@react-navigation/native";
 
 const historyString = JSON.stringify([
     47222.9831719397,
@@ -178,24 +178,32 @@ const historyString = JSON.stringify([
     51950.89679140388
 ]);
 
+// state
+// {
+//     id: '1',
+//         image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
+//     symbol: 'USD',
+//     valueChange24H: -1.12,
+//     valueChange1D: 3.342,
+//     valueChange7D: -3.423,
+//     valueUSD: 459342,
+//     name: 'BTC',
+//     currentPrice: 3423432,
+//     amount: 2,
+//
+// }
+
 const CoinDetailsScreen = () => {
 
-    const [coinData, setCoinData] = useState({
-        id: '1',
-        image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
-        symbol: 'USD',
-        valueChange24H: -1.12,
-        valueChange1D: 3.342,
-        valueChange7D: -3.423,
-        valueUSD: 459342,
-        name: 'BTC',
-        currentPrice: 3423432,
-        amount: 2,
-
-    });
+    const [coinData, setCoinData] = useState(null);
 
     const navigation = useNavigation();
+    const route = useRoute();
 
+    if(!coinData) {
+        return  <ActivityIndicator size="large" />
+
+    }
     const onSell = () => {
       navigation.navigate('CoinExchange', {isBuy: false, coinData});
 
@@ -204,6 +212,7 @@ const CoinDetailsScreen = () => {
     const onBuy = () => {
       navigation.navigate('CoinExchange', {isBuy: true, coinData});
     };
+
 
     const [liked, setLiked] = useState(false);
     const [icon, setIcon] = useState('staro');
