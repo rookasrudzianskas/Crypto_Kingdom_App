@@ -11,7 +11,7 @@ export const PortfolioCoinProps = {
         name: String,
         symbol: String,
         valueChange24H: Number,
-        valueUSD: Number,
+        currentPrice: Number,
     }
 };
 
@@ -24,7 +24,7 @@ const MarketCoin = (props: PortfolioCoinProps) => {
             name,
             symbol,
             valueChange24H,
-            valueUSD,
+            currentPrice,
         },
     } = props;
 
@@ -39,7 +39,7 @@ const MarketCoin = (props: PortfolioCoinProps) => {
                 </View>
 
                 <View style={tw`flex flex-col  bg-blue-700 items-center justify-center`}>
-                    <Text style={[styles.name, tw`mr-5 text-xl  text-white font-extrabold text-green-600`]}>${valueUSD}</Text>
+                    <Text style={[styles.name, tw`mr-5 text-xl  text-white font-extrabold text-green-600`]}>$ {currentPrice}</Text>
                     <PercentageChange  value={valueChange24H}/>
                 </View>
 

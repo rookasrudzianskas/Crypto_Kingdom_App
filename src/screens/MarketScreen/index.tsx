@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, FlatList} from "react-native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
@@ -6,6 +6,8 @@ import image from '../../../assets/images/Saly-17.png';
 import styles from "./styles";
 import PortfolioCoin from "../../components/PortfolioCoin";
 import MarketCoin from "../../components/MarketCoin";
+import {API, graphqlOperation} from "aws-amplify";
+import {listCoins} from "../../graphql/queries";
 
 // const marketCoins = [{
 //     id: '1',
@@ -44,6 +46,20 @@ import MarketCoin from "../../components/MarketCoin";
 const MarketScreen = (props) => {
 
     const [coins, setCoins] = useState([]);
+
+
+    const fetchCoins = async () => {
+        try {
+            const response = await API.graphql(graphqlOperation(listCoins));
+            setCoins(response.data.listCoins.items);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect(() => {
+        fetchCoins();
+    }, []);
 
     return (
         <View style={[styles.root, tw`bg-blue-700`]}>
