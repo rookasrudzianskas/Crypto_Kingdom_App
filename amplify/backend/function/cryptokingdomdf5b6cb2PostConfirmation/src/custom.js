@@ -56,11 +56,13 @@ exports.handler = async (event, context) => {
     'amount': { N: "100000.0" }
   }
 
+  const coinParams = {
+    Item: PortfolioCoinItem,
+    TableName: process.env.PORTFOLIO_COIN_TABLE,
+  }
+
   try {
-    await ddb.putItem({
-      Item: PortfolioCoinItem,
-      TableName: process.env.PORTFOLIO_COIN_TABLE,
-    }).promise();
+    await ddb.putItem(coinParams).promise();
     console.log("Success");
   } catch (e) {
     console.log("Error", e);
