@@ -197,14 +197,14 @@ const historyString = JSON.stringify([
 
 const CoinDetailsScreen = () => {
 
-    const [coin, setCoin] = useState(null);
+    const [coin, setCoin] = useState({});
     const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
     const route = useRoute();
 
     const fetchCoinData = async () => {
-        // setLoading(true);
+        setLoading(true);
         //
         // @ts-ignore
         if(!route.params.id) {
@@ -215,12 +215,12 @@ const CoinDetailsScreen = () => {
             // @ts-ignore
             const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
             console.log(response);
-        //     setCoin(response.data.getCoin);
+            setCoin(response.data.getCoin);
         //
         } catch (e) {
             console.log(e);
         } finally {
-        //     setLoading(false);
+            setLoading(false);
         }
     }
 
