@@ -2,11 +2,14 @@ import React from 'react';
 import {View, Text} from "../Themed";
 import tw from "tailwind-react-native-classnames";
 import styles from "./style";
-import {Image} from "react-native";
+import {Image, Pressable} from "react-native";
 import PercentageChange from "../PercentageChange";
+import {useNavigation} from "@react-navigation/native";
 
 export const PortfolioCoinProps = {
+    // this could be the bug, because of naming
     portfolioCoin: {
+        id: String,
         image: String,
         name: String,
         symbol: String,
@@ -20,6 +23,7 @@ const MarketCoin = (props: PortfolioCoinProps) => {
 
     const {
         portfolioCoin: {
+            id,
             image,
             name,
             symbol,
@@ -28,8 +32,10 @@ const MarketCoin = (props: PortfolioCoinProps) => {
         },
     } = props;
 
+    const navigation = useNavigation();
+
     return (
-        <View style={[styles.root, tw`items-center bg-blue-700`]}>
+        <Pressable onPress={() => navigation.navigate('CoinDetails', { id })} style={[styles.root, tw`items-center bg-blue-700`]}>
             <View style={tw`ml-5  bg-blue-700`}>
                 <Image source={{uri: image}} style={[styles.image, tw``]} />
             </View>
@@ -43,7 +49,7 @@ const MarketCoin = (props: PortfolioCoinProps) => {
                     <PercentageChange  value={valueChange24H}/>
                 </View>
 
-        </View>
+        </Pressable>
     );
 };
 

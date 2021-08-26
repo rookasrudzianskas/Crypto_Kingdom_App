@@ -7,6 +7,7 @@ import {useNavigation} from "@react-navigation/native";
 
 export const PortfolioCoinProps = {
     portfolioCoin: {
+        id: String,
         image: String,
         name: String,
         symbol: String,
@@ -22,6 +23,7 @@ const PortfolioCoin = (props: PortfolioCoinProps) => {
 
     const {
         portfolioCoin: {
+            id,
             image,
             name,
             symbol,
@@ -31,7 +33,7 @@ const PortfolioCoin = (props: PortfolioCoinProps) => {
     } = props;
 
     return (
-        <Pressable onPress={() => navigation.navigate('CoinDetails')} style={[styles.root, tw`items-center bg-blue-700`]}>
+        <Pressable onPress={() => navigation.navigate('CoinDetails', { id })} style={[styles.root, tw`items-center bg-blue-700`]}>
             <View style={tw`ml-5  bg-blue-700`}>
                 <Image source={{uri: image}} style={[styles.image, tw``]} />
             </View>
