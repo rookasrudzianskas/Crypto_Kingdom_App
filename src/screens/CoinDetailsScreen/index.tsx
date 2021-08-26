@@ -256,9 +256,8 @@ const CoinDetailsScreen = () => {
                 }
             }));
 
-            console.log("This is awesome response 🍚", response);
+            // console.log("This is awesome response 🍚", response);
             // @ts-ignore
-            setCoin(response.data.getCoin);
             //
         } catch (e) {
             console.log("Failed 🍚", e);
