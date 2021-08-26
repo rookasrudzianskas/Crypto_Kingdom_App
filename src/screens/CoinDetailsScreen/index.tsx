@@ -256,6 +256,12 @@ const CoinDetailsScreen = () => {
                 }
             }));
 
+            // @ts-ignore
+            if (response.data.listPortfolioCoins.items.length > 0) {
+                // @ts-ignore
+                setPortfolioCoin(response.data.listPortfolioCoins.items.length[0])
+            }
+
             // console.log("This is awesome response 🍚", response);
         } catch (e) {
             console.log("Failed 🍚", e);
