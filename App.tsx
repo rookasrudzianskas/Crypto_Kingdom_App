@@ -18,9 +18,9 @@ export default function App() {
   const colorScheme = useColorScheme();
 
 
-  useEffect(() => {
+  // useEffect(() => {
     // console.log("User id is updated 🔥", userId);
-  }, [userId]);
+  // }, [userId]);
 
 
   if (!isLoadingComplete) {
