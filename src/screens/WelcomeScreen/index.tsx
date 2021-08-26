@@ -45,9 +45,9 @@ const WelcomeScreen = (props) => {
                 const user = await Auth.currentAuthenticatedUser();
 
                 if(user) {
-                    console.log("user data");
-                    console.log(user);
-                    setUserId(user.id);
+                    // console.log("user data");
+                    // console.log(user);
+                    setUserId(user.attributes.sub);
                     navigation.navigate('Root');
                     // prevents some routing issues
                     // deletes the last stack and starts out from the zero
@@ -75,7 +75,7 @@ const WelcomeScreen = (props) => {
     useEffect(() => {
         Hub.listen("auth", ({ payload: { event, data } }) => {
             if(event === "signIn") {
-                setUserId(data.id);
+                setUserId(data.signInUserSession.accessToken.payload.sub);
                 navigation.dispatch(
                     CommonActions.reset({
                         index: 1,

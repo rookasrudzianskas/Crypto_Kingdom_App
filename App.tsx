@@ -19,8 +19,8 @@ export default function App() {
 
 
   useEffect(() => {
-
-  }, []);
+    console.log("User id is updated 🔥", userId);
+  }, [userId]);
 
 
   if (!isLoadingComplete) {
