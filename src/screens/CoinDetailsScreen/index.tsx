@@ -206,35 +206,27 @@ const CoinDetailsScreen = () => {
     const fetchCoinData = async () => {
         // setLoading(true);
         //
-        // if(!route.params.id) {
-        //     return;
-        // }
+        // @ts-ignore
+        if(!route.params.id) {
+            return;
+        }
         //
-        // try {
-        //     const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
+        try {
+            // @ts-ignore
+            const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
+            console.log(response);
         //     setCoin(response.data.getCoin);
         //
-        // } catch (e) {
-        //     console.log(e);
-        // } finally {
+        } catch (e) {
+            console.log(e);
+        } finally {
         //     setLoading(false);
-        // }
+        }
     }
 
     useEffect(() => {
         fetchCoinData();
     }, []);
-
-
-
-    // let [something1, setSomething1] = useState(null);
-    //
-    //
-
-
-
-
-
 
 
     if(!coin) {
