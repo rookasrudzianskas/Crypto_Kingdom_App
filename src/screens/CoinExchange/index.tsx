@@ -5,6 +5,9 @@ import tw from "tailwind-react-native-classnames";
 // @ts-ignore
 import image from '../../../assets/images/Saly-31.png';
 import styles from "./styles";
+import {API, graphqlOperation} from "aws-amplify";
+// @ts-ignore
+import {exchangeCoins} from "../../graphql/mutations";
 
 interface CoinExchangeProps {
 
@@ -59,7 +62,15 @@ const CoinExchangeScreen = () => {
     }, [coinUSDValue]);
 
     const placeOrder = async () => {
-
+        try {
+            const response = await API.graphql(graphqlOperation(exchangeCoins, {
+                coinId: coin.id,
+                isBuy,
+                amount: parseFloat(coinAmount)
+            }))
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const onPlaceOrder = () => {
