@@ -313,6 +313,7 @@ const CoinDetailsScreen = () => {
     };
 
     // @ts-ignore
+    // @ts-ignore
     return (
         <View style={tw`bg-blue-700 flex-1`}>
                 <View style={tw`flex items-center mt-14 mb-10`}>
@@ -341,13 +342,16 @@ const CoinDetailsScreen = () => {
 
             {/*chart goes in here*/}
 
+    {/*// @ts-ignore*/}
+            {coin?.priceHistoryString &&
+
             <View style={tw`flex items-center`}>
     {/*// @ts-ignore*/}
                 <Text style={tw`text-2xl text-white font-bold mt-5 mb-5`}>{coin.name} Price Graph</Text>
     {/*// @ts-ignore*/}
-                <CoinPriceGraph dataString={historyString} />
+                <CoinPriceGraph dataString={coin.priceHistoryString} />
             </View>
-
+            }
 
         {/*    chart ends in here*/}
 
