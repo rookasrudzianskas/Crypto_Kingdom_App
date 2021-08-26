@@ -7,7 +7,7 @@ import PercentageChange from "../../components/PercentageChange";
 import CoinPriceGraph from "../../components/CoinPriceGraph";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {API, graphqlOperation} from "aws-amplify";
-import {getCoin} from "../../graphql/queries";
+import {getCoin, listPortfolioCoins} from "../../graphql/queries";
 
 const historyString = JSON.stringify([
     47222.9831719397,
@@ -199,6 +199,7 @@ const CoinDetailsScreen = () => {
 
     const [coin, setCoin] = useState({});
     const [loading, setLoading] = useState(false);
+    const [portfolioCoin, setPortfolioCoin] = useState({});
 
     const navigation = useNavigation();
     const route = useRoute();
@@ -207,7 +208,7 @@ const CoinDetailsScreen = () => {
         setLoading(true);
         //
         // @ts-ignore
-        if(!route.params.id) {
+        if(!route.params?.id) {
             return;
         }
         //
@@ -215,6 +216,7 @@ const CoinDetailsScreen = () => {
             // @ts-ignore
             const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
             console.log(response);
+            // @ts-ignore
             setCoin(response.data.getCoin);
         //
         } catch (e) {
@@ -228,6 +230,36 @@ const CoinDetailsScreen = () => {
         fetchCoinData();
     }, []);
 
+
+
+    const fetchPortfolioCoinData = async () => {
+        setLoading(true);
+        //
+        // @ts-ignore
+        if(!route.params?.id) {
+            return;
+        }
+        //
+        try {
+            // @ts-ignore
+            const response = await API.graphql(graphqlOperation(listPortfolioCoins, { filter: {
+                    and: {
+            // @ts-ignore
+                        coinId: { eq: route.params?.id },
+                        // userId: { eq:  }
+                    }
+                }
+            }));
+            console.log(response);
+            // @ts-ignore
+            setCoin(response.data.getCoin);
+            //
+        } catch (e) {
+            console.log(e);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     if(!coin) {
         return  <View style={tw`mt-96 flex items-center justify-center`}>
@@ -275,10 +307,13 @@ const CoinDetailsScreen = () => {
                 </View>
             <View style={[styles.root, tw`items-center bg-blue-700`]}>
                 <View style={tw`ml-5  bg-blue-700`}>
+    {/*// @ts-ignore*/}
                     <Image source={{uri: coin.image}} style={[styles.image, tw``]} />
                 </View>
                 <View  style={tw`flex-1  bg-blue-700`}>
+    {/*// @ts-ignore*/}
                     <Text style={[styles.name, tw` text-white ml-5 text-xl font-bold`]}>{coin.name}</Text>
+    {/*// @ts-ignore*/}
                     <Text style={[styles.symbol, tw`ml-5  text-white text-sm font-medium`]}>{coin.symbol}</Text>
                 </View>
 
@@ -294,6 +329,7 @@ const CoinDetailsScreen = () => {
             {/*chart goes in here*/}
 
             <View style={tw`flex items-center`}>
+    {/*// @ts-ignore*/}
                 <Text style={tw`text-2xl text-white font-bold mt-5 mb-5`}>{coin.name} Price Graph</Text>
     {/*// @ts-ignore*/}
                 <CoinPriceGraph dataString={historyString} />
@@ -308,22 +344,26 @@ const CoinDetailsScreen = () => {
             <View style={tw`flex flex-row mx-8 mt-10`}>
                 <View style={tw`flex w-1/3`}>
                     <Text style={tw`text-lg text-white`}>Current Price</Text>
+    {/*// @ts-ignore*/}
                     <Text style={tw`text-white text-xl font-bold`}>$ {coin.currentPrice}</Text>
                 </View>
 
                 <View style={tw`w-1/3 flex flex-row justify-between`}>
                 <View style={tw`mx-8`}>
                     <Text style={tw`text-lg text-white mb-3`}>1 Hour</Text>
+    {/*// @ts-ignore*/}
                     <PercentageChange style={{fontSize: 15}} value={coin.valueChange24H} />
                 </View>
 
                 <View style={tw`mx-2`}>
                     <Text style={tw`text-lg text-white mb-3`}>1 Day</Text>
+    {/*// @ts-ignore*/}
                     <PercentageChange style={{fontSize: 15}} value={coin.valueChange1D} />
                 </View>
 
                 <View style={tw`mx-2`}>
                     <Text style={tw`text-lg text-white mb-3`}>7 Days</Text>
+    {/*// @ts-ignore*/}
                     <PercentageChange style={{fontSize: 15}} value={coin.valueChange7D} />
                 </View>
                 </View>
@@ -336,6 +376,7 @@ const CoinDetailsScreen = () => {
 
                 <View  style={tw`flex `}>
                     <Text  style={tw`text-lg text-white`}>
+    {/*// @ts-ignore*/}
                         <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{coin.amount}</Text> ($ {coin.currentPrice * coin.amount})
                     </Text>
                 </View>
