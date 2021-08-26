@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, FlatList} from "react-native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
@@ -36,6 +36,8 @@ const marketCoins = [{
     valueUSD: 100.993,
     image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
 }];
+
+
 
 
 // @ts-ignore
