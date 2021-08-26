@@ -6,6 +6,8 @@ import {AntDesign} from "@expo/vector-icons";
 import PercentageChange from "../../components/PercentageChange";
 import CoinPriceGraph from "../../components/CoinPriceGraph";
 import {useNavigation, useRoute} from "@react-navigation/native";
+import {API, graphqlOperation} from "aws-amplify";
+import {getCoin} from "../../graphql/queries";
 
 const historyString = JSON.stringify([
     47222.9831719397,
@@ -202,6 +204,17 @@ const CoinDetailsScreen = () => {
 
     const fetchCoinData = async () => {
 
+        if(!route.params.id) {
+            return;
+        }
+
+        try {
+            const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
+
+            console.log(response);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
 
@@ -210,7 +223,7 @@ const CoinDetailsScreen = () => {
     })
 
     if(!coinData) {
-        return  <View style={tw`mt-24 flex items-center justify-center`}>
+        return  <View style={tw`mt-96 flex items-center justify-center`}>
             <View style={tw`mb-10`}>
                 <Text style={tw`text-xl text-blue-500 font-medium`}>The Coin Data is loading... 🚀</Text>
             </View>
