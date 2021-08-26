@@ -198,31 +198,40 @@ const historyString = JSON.stringify([
 const CoinDetailsScreen = () => {
 
     const [coin, setCoin] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const navigation = useNavigation();
     const route = useRoute();
 
-    // let [something1, setSomething1] = useState(null);
-    //
-    //
-
     const fetchCoinData = async () => {
-        if(!route.params.id) {
-            return;
-        }
-
-        try {
-            const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
-            setCoin(response.data.getCoin);
-
-        } catch (e) {
-            console.log(e);
-        }
+        // setLoading(true);
+        //
+        // if(!route.params.id) {
+        //     return;
+        // }
+        //
+        // try {
+        //     const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
+        //     setCoin(response.data.getCoin);
+        //
+        // } catch (e) {
+        //     console.log(e);
+        // } finally {
+        //     setLoading(false);
+        // }
     }
 
     useEffect(() => {
         fetchCoinData();
     }, []);
+
+
+
+    // let [something1, setSomething1] = useState(null);
+    //
+    //
+
+
 
 
 
