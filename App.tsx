@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './src/hooks/useCachedResources';
@@ -18,6 +18,9 @@ export default function App() {
   const colorScheme = useColorScheme();
 
 
+  useEffect(() => {
+
+  }, []);
 
 
   if (!isLoadingComplete) {
