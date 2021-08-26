@@ -242,6 +242,7 @@ const CoinDetailsScreen = () => {
         if(!route.params?.id) {
             return;
         }
+        console.log("userId");
         console.log(userId);
 
         try {
@@ -260,11 +261,15 @@ const CoinDetailsScreen = () => {
             setCoin(response.data.getCoin);
             //
         } catch (e) {
-            console.log(e);
+            console.log("Failed", e);
         } finally {
             setLoading(false);
         }
     }
+
+    useEffect(()  => {
+        fetchPortfolioCoinData();
+    }, []);
 
     if(!coin) {
         return  <View style={tw`mt-96 flex items-center justify-center`}>
