@@ -259,7 +259,7 @@ const CoinDetailsScreen = () => {
             // @ts-ignore
             if (response.data.listPortfolioCoins.items.length > 0) {
                 // @ts-ignore
-                setPortfolioCoin(response.data.listPortfolioCoins.items.length[0])
+                setPortfolioCoin(response.data.listPortfolioCoins.items[0])
             }
 
             // console.log("This is awesome response 🍚", response);
@@ -390,7 +390,7 @@ const CoinDetailsScreen = () => {
                 <View  style={tw`flex `}>
                     <Text  style={tw`text-lg text-white`}>
     {/*// @ts-ignore*/}
-                        <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{coin.amount}</Text> ($ {coin.currentPrice * coin.amount})
+                        <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{portfolioCoin?.amount || 0 }</Text> ($ {coin.currentPrice * portfolioCoin?.amount || 0 })
                     </Text>
                 </View>
             </View>
