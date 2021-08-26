@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, Text, Image, TouchableOpacity} from "react-native";
 import tw from 'tailwind-react-native-classnames';
 import styles from "./styles";
@@ -8,6 +8,7 @@ import {useNavigation} from "@react-navigation/native";
 import {AntDesign} from "@expo/vector-icons";
 import { Auth, Hub } from 'aws-amplify';
 import { CommonActions } from '@react-navigation/native';
+import AppContext from "../../utils/AppContext";
 
 
 
@@ -35,6 +36,8 @@ const WelcomeScreen = (props) => {
         console.log("Sign in With apple coming soon...");
     }
 
+    const {setUserId} = useContext(AppContext);
+
     useEffect(() => {
 
         const fetchUser = async () => {
@@ -44,6 +47,7 @@ const WelcomeScreen = (props) => {
                 if(user) {
                     console.log("user data");
                     console.log(user);
+                    setUserId(user.id);
                     navigation.navigate('Root');
                     // prevents some routing issues
                     // deletes the last stack and starts out from the zero
@@ -71,6 +75,7 @@ const WelcomeScreen = (props) => {
     useEffect(() => {
         Hub.listen("auth", ({ payload: { event, data } }) => {
             if(event === "signIn") {
+                setUserId(data.id);
                 navigation.dispatch(
                     CommonActions.reset({
                         index: 1,

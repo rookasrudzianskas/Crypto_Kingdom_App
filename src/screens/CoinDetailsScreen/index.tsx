@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Image, TouchableOpacity, ActivityIndicator, ActivityIndicatorComponent} from "react-native";
 import styles from "../../components/MarketCoin/style";
 import tw from "tailwind-react-native-classnames";
@@ -8,6 +8,7 @@ import CoinPriceGraph from "../../components/CoinPriceGraph";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {API, graphqlOperation} from "aws-amplify";
 import {getCoin, listPortfolioCoins} from "../../graphql/queries";
+import AppContext from "../../utils/AppContext";
 
 const historyString = JSON.stringify([
     47222.9831719397,
@@ -201,6 +202,8 @@ const CoinDetailsScreen = () => {
     const [loading, setLoading] = useState(false);
     const [portfolioCoin, setPortfolioCoin] = useState({});
 
+    const {userId} = useContext(AppContext);
+
     const navigation = useNavigation();
     const route = useRoute();
 
@@ -239,18 +242,20 @@ const CoinDetailsScreen = () => {
         if(!route.params?.id) {
             return;
         }
-        //
+        console.log(userId);
+
         try {
             // @ts-ignore
             const response = await API.graphql(graphqlOperation(listPortfolioCoins, { filter: {
                     and: {
             // @ts-ignore
                         coinId: { eq: route.params?.id },
-                        // userId: { eq:  }
+                        userId: { eq: userId }
                     }
                 }
             }));
-            console.log(response);
+
+            console.log("This is awesome response 🍚", response);
             // @ts-ignore
             setCoin(response.data.getCoin);
             //
