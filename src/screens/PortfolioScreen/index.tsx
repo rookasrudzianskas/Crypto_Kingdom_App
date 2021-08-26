@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, FlatList} from "react-native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
@@ -37,8 +37,11 @@ const portfolioCoins = [{
 }];
 
 
+
 // @ts-ignore
 const PortfolioScreen = (props) => {
+
+
     return (
         <View style={[styles.root, tw`bg-blue-700`]}>
             <>
