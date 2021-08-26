@@ -431,3 +431,5 @@ const CoinDetailsScreen = () => {
 };
 
 export default CoinDetailsScreen;
+
+// will try to work on function new order
