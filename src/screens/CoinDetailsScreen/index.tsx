@@ -257,8 +257,6 @@ const CoinDetailsScreen = () => {
             }));
 
             // console.log("This is awesome response 🍚", response);
-            // @ts-ignore
-            //
         } catch (e) {
             console.log("Failed 🍚", e);
         } finally {
