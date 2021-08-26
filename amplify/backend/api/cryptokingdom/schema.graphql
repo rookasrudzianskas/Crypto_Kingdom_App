@@ -34,5 +34,5 @@ type Coin @model(mutations: null) {
 }
 
 type Mutation {
-  exchangeCoins(coinId: ID, isBuy: Boolean!, amount: Float!): Boolean! @function(name: "exchangecoins-${env}")
+  exchangeCoins(coinId: ID, isBuy: Boolean!, amount: Float!): Boolean! @function(name: "exchangeCoins-${env}")
 }
