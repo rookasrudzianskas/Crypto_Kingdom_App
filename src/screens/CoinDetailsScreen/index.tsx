@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, TouchableOpacity, ActivityIndicator, ActivityIndicatorComponent} from "react-native";
 import styles from "../../components/MarketCoin/style";
 import tw from "tailwind-react-native-classnames";
@@ -199,6 +199,15 @@ const CoinDetailsScreen = () => {
 
     const navigation = useNavigation();
     const route = useRoute();
+
+    const fetchCoinData = async () => {
+
+    }
+
+
+    useEffect(() => {
+        fetchCoinData();
+    })
 
     if(!coinData) {
         return  <View style={tw`mt-24 flex items-center justify-center`}>
