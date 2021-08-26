@@ -7,41 +7,44 @@ import styles from "./styles";
 import PortfolioCoin from "../../components/PortfolioCoin";
 import MarketCoin from "../../components/MarketCoin";
 
-const marketCoins = [{
-    id: '1',
-    name: 'Virtual Dollars',
-    symbol: 'USD',
-    valueChange24H: 79.993,
-    valueUSD: 79.993,
-    image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
-}, {
-    id: '2',
-    name: 'Bitcoin',
-    symbol: 'BTC',
-    image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
-    valueChange24H: -90.993,
-    valueUSD: 90.993,
-}, {
-    id: '3',
-    name: 'Eutherium',
-    symbol: 'ETH',
-    valueChange24H: 100.993,
-    valueUSD: 100.993,
-    image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
-}, {
-    id: '4',
-    name: 'Eutherium',
-    symbol: 'ETH',
-    valueChange24H: -100.993,
-    valueUSD: 100.993,
-    image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
-}];
+// const marketCoins = [{
+//     id: '1',
+//     name: 'Virtual Dollars',
+//     symbol: 'USD',
+//     valueChange24H: 79.993,
+//     valueUSD: 79.993,
+//     image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
+// }, {
+//     id: '2',
+//     name: 'Bitcoin',
+//     symbol: 'BTC',
+//     image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
+//     valueChange24H: -90.993,
+//     valueUSD: 90.993,
+// }, {
+//     id: '3',
+//     name: 'Eutherium',
+//     symbol: 'ETH',
+//     valueChange24H: 100.993,
+//     valueUSD: 100.993,
+//     image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
+// }, {
+//     id: '4',
+//     name: 'Eutherium',
+//     symbol: 'ETH',
+//     valueChange24H: -100.993,
+//     valueUSD: 100.993,
+//     image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
+// }];
 
 
 
 
 // @ts-ignore
 const MarketScreen = (props) => {
+
+    const [coins, setCoins] = useState([]);
+
     return (
         <View style={[styles.root, tw`bg-blue-700`]}>
             <>
@@ -51,7 +54,7 @@ const MarketScreen = (props) => {
                 </View>
             </>
             {/*<View style={tw`bg-blu`}>*/}
-            <FlatList showsVerticalScrollIndicator={false} style={{width: '100%'}} data={marketCoins} renderItem={({item}) => <MarketCoin portfolioCoin={item}  />}/>
+            <FlatList showsVerticalScrollIndicator={false} style={{width: '100%'}} data={coins} renderItem={({item}) => <MarketCoin portfolioCoin={item}  />}/>
             {/*</View>*/}
         </View>
     );
