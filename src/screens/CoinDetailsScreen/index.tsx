@@ -261,7 +261,7 @@ const CoinDetailsScreen = () => {
             setCoin(response.data.getCoin);
             //
         } catch (e) {
-            console.log("Failed", e);
+            console.log("Failed 🍚", e);
         } finally {
             setLoading(false);
         }
