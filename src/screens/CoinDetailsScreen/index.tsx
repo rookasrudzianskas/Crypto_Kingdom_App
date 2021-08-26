@@ -197,7 +197,7 @@ const historyString = JSON.stringify([
 
 const CoinDetailsScreen = () => {
 
-    const [coinData, setCoinData] = useState(null);
+    const [coin, setCoin] = useState(null);
 
     const navigation = useNavigation();
     const route = useRoute();
@@ -210,8 +210,8 @@ const CoinDetailsScreen = () => {
 
         try {
             const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
-
-            console.log(response);
+            console.log(response)
+            setCoin(response.data.getCoin);
         } catch (e) {
             console.log(e);
         }
@@ -220,9 +220,11 @@ const CoinDetailsScreen = () => {
 
     useEffect(() => {
         fetchCoinData();
-    })
+    }, []);
+    console.log("THis is the coin", coin);
 
-    if(!coinData) {
+
+    if(!coin) {
         return  <View style={tw`mt-96 flex items-center justify-center`}>
             <View style={tw`mb-10`}>
                 <Text style={tw`text-xl text-blue-500 font-medium`}>The Coin Data is loading... 🚀</Text>
@@ -234,12 +236,12 @@ const CoinDetailsScreen = () => {
 
     }
     const onSell = () => {
-      navigation.navigate('CoinExchange', {isBuy: false, coinData});
+      navigation.navigate('CoinExchange', {isBuy: false, coin});
 
     };
 
     const onBuy = () => {
-      navigation.navigate('CoinExchange', {isBuy: true, coinData});
+      navigation.navigate('CoinExchange', {isBuy: true, coin});
     };
 
 
@@ -268,11 +270,11 @@ const CoinDetailsScreen = () => {
                 </View>
             <View style={[styles.root, tw`items-center bg-blue-700`]}>
                 <View style={tw`ml-5  bg-blue-700`}>
-                    <Image source={{uri: coinData.image}} style={[styles.image, tw``]} />
+                    <Image source={{uri: coin.image}} style={[styles.image, tw``]} />
                 </View>
                 <View  style={tw`flex-1  bg-blue-700`}>
-                    <Text style={[styles.name, tw` text-white ml-5 text-xl font-bold`]}>{coinData.name}</Text>
-                    <Text style={[styles.symbol, tw`ml-5  text-white text-sm font-medium`]}>{coinData.symbol}</Text>
+                    <Text style={[styles.name, tw` text-white ml-5 text-xl font-bold`]}>{coin.name}</Text>
+                    <Text style={[styles.symbol, tw`ml-5  text-white text-sm font-medium`]}>{coin.symbol}</Text>
                 </View>
 
                 <View style={tw`flex flex-col  bg-blue-700 items-center justify-center`}>
@@ -301,23 +303,23 @@ const CoinDetailsScreen = () => {
             <View style={tw`flex flex-row mx-8 mt-10`}>
                 <View style={tw`flex w-1/3`}>
                     <Text style={tw`text-lg text-white`}>Current Price</Text>
-                    <Text style={tw`text-white text-xl font-bold`}>$ {coinData.currentPrice}</Text>
+                    <Text style={tw`text-white text-xl font-bold`}>$ {coin.currentPrice}</Text>
                 </View>
 
                 <View style={tw`w-1/3 flex flex-row justify-between`}>
                 <View style={tw`mx-8`}>
                     <Text style={tw`text-lg text-white mb-3`}>1 Hour</Text>
-                    <PercentageChange style={{fontSize: 15}} value={coinData.valueChange24H} />
+                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange24H} />
                 </View>
 
                 <View style={tw`mx-2`}>
                     <Text style={tw`text-lg text-white mb-3`}>1 Day</Text>
-                    <PercentageChange style={{fontSize: 15}} value={coinData.valueChange1D} />
+                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange1D} />
                 </View>
 
                 <View style={tw`mx-2`}>
                     <Text style={tw`text-lg text-white mb-3`}>7 Days</Text>
-                    <PercentageChange style={{fontSize: 15}} value={coinData.valueChange7D} />
+                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange7D} />
                 </View>
                 </View>
             </View>
@@ -329,7 +331,7 @@ const CoinDetailsScreen = () => {
 
                 <View  style={tw`flex `}>
                     <Text  style={tw`text-lg text-white`}>
-                        <Text style={tw`font-bold`}>{coinData.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{coinData.amount}</Text> ($ {coinData.currentPrice * coinData.amount})
+                        <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{coin.amount}</Text> ($ {coin.currentPrice * coin.amount})
                     </Text>
                 </View>
             </View>
