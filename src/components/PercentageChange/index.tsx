@@ -11,7 +11,7 @@ const PercentageChange = ({value, style={} }: PercentageChangeProps) => {
     return (
         <View>
             <Text style={[style, {color: value > 0 ? '#4ddb00' : '#f10000'}, tw`font-bold`]}>
-                {value > 0 && '+'} {value}
+                {value > 0 && '+'} {value} %
             </Text>
         </View>
     );
