@@ -181,20 +181,6 @@ const historyString = JSON.stringify([
     51950.89679140388
 ]);
 
-// state
-// {
-//     id: '1',
-//         image: 'https://bitcoin.org/img/icons/opengraph.png?1628351347',
-//     symbol: 'USD',
-//     valueChange24H: -1.12,
-//     valueChange1D: 3.342,
-//     valueChange7D: -3.423,
-//     valueUSD: 459342,
-//     name: 'BTC',
-//     currentPrice: 3423432,
-//     amount: 2,
-//
-// }
 
 const CoinDetailsScreen = () => {
 
