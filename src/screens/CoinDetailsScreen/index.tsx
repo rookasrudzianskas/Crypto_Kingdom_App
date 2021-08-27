@@ -184,9 +184,9 @@ const historyString = JSON.stringify([
 
 const CoinDetailsScreen = () => {
 
-    const [coin, setCoin] = useState({});
+    const [coin, setCoin] = useState({}); // null
     const [loading, setLoading] = useState(false);
-    const [portfolioCoin, setPortfolioCoin] = useState({});
+    const [portfolioCoin, setPortfolioCoin] = useState({}); // null
 
     const {userId} = useContext(AppContext);
 
