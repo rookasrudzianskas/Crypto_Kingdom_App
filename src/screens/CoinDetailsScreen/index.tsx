@@ -242,6 +242,8 @@ const CoinDetailsScreen = () => {
                 }
             }));
 
+            console.log("This is the response from filter 🔥", response);
+
             // @ts-ignore
             if (response.data.listPortfolioCoins.items.length > 0) {
                 // @ts-ignore
