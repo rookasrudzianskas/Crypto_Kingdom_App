@@ -204,7 +204,7 @@ const CoinDetailsScreen = () => {
         try {
             // @ts-ignore
             const response = await API.graphql(graphqlOperation(getCoin, { id: route.params.id }));
-            console.log(response);
+            // console.log(response);
             // @ts-ignore
             setCoin(response.data.getCoin);
         //
