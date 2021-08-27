@@ -388,7 +388,7 @@ const CoinDetailsScreen = () => {
                 <View  style={tw`flex `}>
                     <Text  style={tw`text-lg text-white`}>
     {/*// @ts-ignore*/}
-                        <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{portfolioCoin?.amount || 0 }</Text> ($ {coin.currentPrice * portfolioCoin?.amount || 0 })
+                        <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{portfolioCoin?.amount || 0 }</Text> ($ {coin.currentPrice * (portfolioCoin?.amount || 0 )})
                     </Text>
                 </View>
             </View>
