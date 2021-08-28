@@ -70,7 +70,7 @@ const CoinExchangeScreen = () => {
             const response = await API.graphql(graphqlOperation(exchangeCoins, {
                 coinId: coin.id,
                 isBuy,
-                amount: parseFloat(coinAmount)
+                amount: parseFloat(coinAmount),
             }))
         } catch (e) {
             console.log(e);
