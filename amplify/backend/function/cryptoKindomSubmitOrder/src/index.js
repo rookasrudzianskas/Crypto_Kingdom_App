@@ -3,7 +3,10 @@
 	API_CRYPTOKINGDOM_GRAPHQLAPIIDOUTPUT
 Amplify Params - DO NOT EDIT */
 
+
+const aws = require('aws-sdk');
 const { CognitoIdentityServiceProvider } = require('aws-sdk');
+const ddb = new aws.DynamoDB();
 const cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
 
 /**
