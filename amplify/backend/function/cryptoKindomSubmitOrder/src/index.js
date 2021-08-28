@@ -20,12 +20,30 @@ const COGNITO_USERNAME_CLAIM_KEY = 'cognito:username';
 
 
 const getCoinAmount = async (coinId, userId) => {
-
+    const params = {
+        Key: {
+            coinId: { S: coinId },
+            userId: { S: userId },
+        },
+        TableName: process.env.PORTFOLIO_COIN_TABLE,
+    }
+    const coinData = await ddb.getItem(params).promise();
+    console.log('portfolio coin data');
+    console.log(coinData);
 }
 
 
 const getUsdAmount = async (userId) => {
-
+    const params = {
+        Key: {
+            coinId: { S: process.env.USD_COIN_ID },
+            userId: { S: userId },
+        },
+        TableName: process.env.PORTFOLIO_COIN_TABLE,
+    }
+    const coinData = await ddb.getItem(params).promise();
+    console.log('usd coin data');
+    console.log(coinData);
 }
 
 const getCoin = async (coinId)  => {
@@ -35,6 +53,9 @@ const getCoin = async (coinId)  => {
         },
         TableName: process.env.COIN_TABLE,
     }
+    const coinData = await ddb.getItem(params).promise();
+    console.log('coin data');
+    console.log(coinData);
 }
 
 
@@ -60,8 +81,32 @@ const resolvers = {
                 return true;
             } catch (e) {
                 console.log(e);
-                throw new Error(`NOT FOUND`);
+                // throw new Error(`NOT FOUND`);
             }
+
+            try {
+                await getCoin();
+            } catch (e) {
+                console.log("Error getting the coin");
+                console.log(e);
+            }
+
+
+            try {
+                await getUsdAmount(ctx.identity.sub);
+            } catch (e) {
+                console.log("Error getting the USD Coin");
+                console.log(e);
+            }
+
+
+            try {
+                await getCoinAmount(ctx.arguments.coinId, ctx.identity.sub);
+            } catch (e) {
+                console.log("Error getting the USD Coin");
+                console.log(e);
+            }
+
         }
     },
 }
