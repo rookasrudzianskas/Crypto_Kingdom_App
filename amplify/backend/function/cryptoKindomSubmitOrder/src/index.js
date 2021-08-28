@@ -29,7 +29,7 @@ const getCoinAmount = async (coinPortfolioCoinId, userId) => {
     const coinData = await ddb.getItem(params).promise();
     console.log('portfolio coin data');
     console.log(coinData);
-    // @TODO check if it is indeed the usd coin and belongs to the user
+    // @TODO check if it is indeed the coin and belongs to the user
     // userId: { S: userId },
 
 }
@@ -45,6 +45,7 @@ const getUsdAmount = async (usdPortfolioCoinId, userId) => {
     const coinData = await ddb.getItem(params).promise();
     console.log('usd coin data');
     console.log(coinData);
+
     // @TODO check if it is indeed the usd coin and belongs to the user
 
     // coinId: { S: process.env.USD_COIN_ID },
