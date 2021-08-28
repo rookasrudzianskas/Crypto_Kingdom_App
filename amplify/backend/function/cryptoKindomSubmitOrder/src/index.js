@@ -59,6 +59,14 @@ const getCoin = async (coinId)  => {
 }
 
 
+const canBuyCoin = (coin, amountToBuy, usdAmount) => {
+    return usdAmount >= coin.currentPrice * amountToBuy
+}
+
+const canSellCoin = (amountToSell, portfolioAmount) => {
+    return portfolioAmount >= amountToSell
+}
+
 
 
 /**
