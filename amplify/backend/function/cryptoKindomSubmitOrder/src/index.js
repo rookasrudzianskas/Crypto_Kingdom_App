@@ -130,28 +130,6 @@ const resolvers = {
                 throw new Error(`Unexpected error exchanging coins`);
             }
 
-
-                try {
-                    await getCoin(ctx.arguments.coinId);
-                } catch (e) {
-                    console.log("Error getting the coin");
-                    console.log(e);
-                }
-
-            try {
-                await getUsdAmount(ctx.arguments.usdPortfolioCoinId, ctx.identity.sub);
-            } catch (e) {
-                console.log("Error getting the USD Coin");
-                console.log(e);
-            }
-
-
-            try {
-                await getCoinAmount(ctx.arguments.coinPortfolioCoinId, ctx.identity.sub);
-            } catch (e) {
-                console.log("Error getting the USD Coin");
-                console.log(e);
-            }
             return true;
         }
     },
