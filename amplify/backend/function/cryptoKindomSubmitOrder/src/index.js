@@ -87,7 +87,7 @@ const buyCoin = async(
     usdAmount
 ) => {
     const date = new Date();
-    // decrease USD
+    // decrease USD to buy coin
     const newUsdAmount = usdAmount - coin.Item.currentPrice.N * amountToBuy;
     const params = {
         Item: {
