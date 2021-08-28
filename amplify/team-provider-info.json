@@ -24,7 +24,7 @@
         },
         "cryptoKindomSubmitOrder": {
           "deploymentBucketName": "amplify-cryptokingdom-dev-144358-deployment",
-          "s3Key": "amplify-builds/cryptoKindomSubmitOrder-63376f51345937655851-build.zip"
+          "s3Key": "amplify-builds/cryptoKindomSubmitOrder-6a69377069786d71444e-build.zip"
         }
       }
     }

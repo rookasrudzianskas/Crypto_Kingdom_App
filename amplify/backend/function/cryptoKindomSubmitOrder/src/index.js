@@ -54,6 +54,7 @@ const resolvers = {
                 console.log(userResponse);
                 return true;
             } catch (e) {
+                console.log(e);
                 throw new Error(`NOT FOUND`);
             }
         }
