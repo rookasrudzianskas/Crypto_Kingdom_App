@@ -29,7 +29,12 @@ const getUsdAmount = async (userId) => {
 }
 
 const getCoin = async (coinId)  => {
-
+    const params = {
+        Key: {
+          id: { S: coinId }
+        },
+        TableName: process.env.COIN_TABLE,
+    }
 }
 
 
