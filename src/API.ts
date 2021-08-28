@@ -169,7 +169,7 @@ export type ExchangeCoinsMutationVariables = {
   coinId: string,
   isBuy: boolean,
   amount: number,
-  usdPortfolioCoinId?: string | null,
+  usdPortfolioCoinId: string,
   coinPortfolioCoinId: string,
 };
 
