@@ -24,7 +24,7 @@ const CoinExchangeScreen = () => {
     // @ts-ignore
     const portfolioCoin = route?.params?.portfolioCoin;
 
-    console.log("This is a portfolio Coin statics", portfolioCoin);
+    // console.log("This is a portfolio Coin statics", portfolioCoin);
 
 
     const [coinAmount, setCoinAmount] = useState('');
@@ -32,7 +32,7 @@ const CoinExchangeScreen = () => {
 
     const maxUSD = 100000;//  @TODO fetch from API
 
-    console.log("This is a coinAmount Coin statics", coinAmount);
+    // console.log("This is a coinAmount Coin statics", coinAmount);
 
     useEffect(() => {
         // this fires then coinAmount changes
