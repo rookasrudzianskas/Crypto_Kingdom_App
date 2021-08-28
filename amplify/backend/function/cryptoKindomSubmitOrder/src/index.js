@@ -88,6 +88,7 @@ const resolvers = {
         exchangeCoins: async ctx => {
             console.log('ctx')
             console.log(ctx);
+            const { coinId, isBuy, amount, usdPortfolioCoinId, coinPortfolioCoinId } = ctx.arguments;
             // const params = {
             //     UserPoolId: COGNITO_USERPOOL_ID, /* required */
             //     Username: ctx.identity.claims[COGNITO_USERNAME_CLAIM_KEY], /* required */
@@ -100,6 +101,14 @@ const resolvers = {
             //     console.log(e);
             //     // throw new Error(`NOT FOUND`);
             // }
+
+            if(isBuy && canBuyCoin()) {
+                buyCoin();
+            } else if(!isBuy && canSellCoin()) {
+                sellCoin();
+            } else {
+                throw new Error(isBuy ? `Not enough USD` : `Not enough coins to sell`);
+            }
 
             try {
                 await getCoin(ctx.arguments.coinId);
