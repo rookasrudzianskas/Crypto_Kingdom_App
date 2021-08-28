@@ -24,11 +24,15 @@ const CoinExchangeScreen = () => {
     // @ts-ignore
     const portfolioCoin = route?.params?.portfolioCoin;
 
+    console.log("This is a portfolio Coin statics", portfolioCoin);
+
+
     const [coinAmount, setCoinAmount] = useState('');
     const [coinUSDValue, setCoinUSDValue] = useState('');
 
     const maxUSD = 100000;//  @TODO fetch from API
 
+    console.log("This is a coinAmount Coin statics", coinAmount);
 
     useEffect(() => {
         // this fires then coinAmount changes
@@ -79,7 +83,7 @@ const CoinExchangeScreen = () => {
             return;
         }
 
-        if(!isBuy && (!portfolioCoin || parseFloat(coinAmount) > portfolioCoin.amount)) {
+        if(!isBuy && !portfolioCoin) {
             Alert.alert('Error', `Not enough ${coin?.symbol} currency coins. Max: ${coinAmount || 0}`);
             return;
         }
