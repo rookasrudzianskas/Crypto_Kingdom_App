@@ -66,6 +66,7 @@ const getCoin = async (coinId)  => {
     const coinData = await ddb.getItem(params).promise();
     console.log('coin data');
     console.log(coinData);
+    return coinData;
 }
 
 
@@ -103,11 +104,13 @@ const resolvers = {
             //     // throw new Error(`NOT FOUND`);
             // }
 
-            const usdAmount = await getUsdAmount(ctx.arguments.usdPortfolioCoinId, userId);
+            const usdAmount = !usdPortfolioCoinId ? 0 : await getUsdAmount(usdPortfolioCoinId, userId);
+            const coinAmount = !coinPortfolioCoinId ? 0 : await getCoinAmount(coinPortfolioCoinId, userId);
+            const coin = await getCoin(coinId);
 
-            if(isBuy && canBuyCoin()) {
+            if(isBuy && canBuyCoin(coin, amount, usdAmount)) {
                 buyCoin();
-            } else if(!isBuy && canSellCoin()) {
+            } else if(!isBuy && canSellCoin(amount, coinAmount)) {
                 sellCoin();
             } else {
                 throw new Error(isBuy ? `Not enough USD` : `Not enough coins to sell`);
