@@ -78,18 +78,19 @@ const canSellCoin = (amountToSell, portfolioAmount) => {
     return portfolioAmount >= amountToSell
 }
 
-const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId) => {
-    // decrease USD
+const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId, userId, usdAmount) => {
     const date = new Date();
+    // decrease USD
+    const newUsdAmount = usdAmount - coin.Item.currentPrice.N * amountToBuy;
     const params = {
         Item: {
             id: { S: usdPortfolioCoinId },
             '__typename': { S: 'PortfolioCoin' },
             'createdAt': { S: date.toISOString() },
             'updatedAt': { S: date.toISOString() },
-            'userId': { S: event.request.userAttributes.sub },
-            'coinId': { S: process.env.USD_COIN_ID },
-            'amount': { N: "100000.0" }
+            'userId': { S: userId },
+            'coinId': { S: coin.id },
+            'amount': { N: newUsdAmount.toString() }
         },
         TableName: process.env.PORTFOLIO_COIN_TABLE,
     }
