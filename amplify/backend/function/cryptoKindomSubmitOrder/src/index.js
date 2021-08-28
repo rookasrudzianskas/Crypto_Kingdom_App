@@ -16,6 +16,23 @@ if (!COGNITO_USERPOOL_ID) {
 const COGNITO_USERNAME_CLAIM_KEY = 'cognito:username';
 
 
+
+const getCoinAmount = async (coinId, userId) => {
+
+}
+
+
+const getUsdAmount = async (userId) => {
+
+}
+
+const getCoin = async (coinId)  => {
+
+}
+
+
+
+
 /**
  * Using this as the entry point, you can use a single function to handle many resolvers.
  */
@@ -23,6 +40,8 @@ const COGNITO_USERNAME_CLAIM_KEY = 'cognito:username';
 const resolvers = {
     Mutation: {
         exchangeCoins: async ctx => {
+            console.log('ctx')
+            console.log(ctx);
             const params = {
                 UserPoolId: COGNITO_USERPOOL_ID, /* required */
                 Username: ctx.identity.claims[COGNITO_USERNAME_CLAIM_KEY], /* required */
