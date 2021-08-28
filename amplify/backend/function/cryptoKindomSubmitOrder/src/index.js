@@ -89,12 +89,12 @@ const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId, userId, usdAmount) 
             'createdAt': { S: date.toISOString() },
             'updatedAt': { S: date.toISOString() },
             'userId': { S: userId },
-            'coinId': { S: coin.id },
+            'coinId': { S: coin.Item.id.S },
             'amount': { N: newUsdAmount.toString() }
         },
         TableName: process.env.PORTFOLIO_COIN_TABLE,
     }
-    const coinData = await ddb.putItem(params).promise();
+    await ddb.putItem(params).promise();
 
     // add new portfolio coin, or update the existing one
 }
