@@ -32,7 +32,11 @@ const getCoinAmount = async (coinPortfolioCoinId, userId) => {
     // @TODO check if it is indeed the coin and belongs to the user
     // userId: { S: userId },
 
-    return coinData?.Item?.amount?.N || 0;
+    if(coinData && coinData.Item && coinData.Item.amount && coinData.Item.amount.N) {
+        return coinData.Item.amount.N;
+    }
+    return 0;
+    // return coinData?.Item?.amount?.N || 0;
 }
 
 
@@ -51,8 +55,11 @@ const getUsdAmount = async (usdPortfolioCoinId, userId) => {
 
     // coinId: { S: process.env.USD_COIN_ID },
     // userId: { S: userId },
-
-    return coinData?.Item?.amount?.N || 0;
+    if(coinData && coinData.Item && coinData.Item.amount && coinData.Item.amount.N) {
+        return coinData.Item.amount.N;
+    }
+    return 0;
+    // return coinData?.Item?.amount?.N || 0;
 
 }
 
