@@ -78,7 +78,14 @@ const canSellCoin = (amountToSell, portfolioAmount) => {
     return portfolioAmount >= amountToSell
 }
 
-const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId, userId, usdAmount) => {
+const buyCoin = async(
+    coin,
+    amountToBuy,
+    usdPortfolioCoinId,
+    coinAmount,
+    userId,
+    usdAmount
+) => {
     const date = new Date();
     // decrease USD
     const newUsdAmount = usdAmount - coin.Item.currentPrice.N * amountToBuy;
@@ -89,7 +96,7 @@ const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId, userId, usdAmount) 
             'createdAt': { S: date.toISOString() },
             'updatedAt': { S: date.toISOString() },
             'userId': { S: userId },
-            'coinId': { S: coin.Item.id.S },
+            'coinId': { S: process.env.USD_COIN_ID },
             'amount': { N: newUsdAmount.toString() }
         },
         TableName: process.env.PORTFOLIO_COIN_TABLE,
@@ -97,10 +104,68 @@ const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId, userId, usdAmount) 
     await ddb.putItem(params).promise();
 
     // add new portfolio coin, or update the existing one
+
+
+    const newCoinAmount = coinAmount + amountToBuy;
+    const params1 = {
+        Item: {
+            id: { S: `${userId}-${coin.Item.symbol.S}` },
+            '__typename': { S: 'PortfolioCoin' },
+            'createdAt': { S: date.toISOString() },
+            'updatedAt': { S: date.toISOString() },
+            'userId': { S: userId },
+            'coinId': { S: coin.Item.id.S },
+            'amount': { N: newCoinAmount.toString() }
+        },
+        TableName: process.env.PORTFOLIO_COIN_TABLE,
+    }
+    await ddb.putItem(params1).promise();
+
 }
 
-const sellCoin = () => {
-    console.log("SELLLLL");
+const sellCoin = async(
+    coin,
+    amountToSell,
+    usdPortfolioCoinId,
+    coinAmount,
+    userId,
+    usdAmount
+) => {
+    const date = new Date();
+    // increase USD
+    const newUsdAmount = usdAmount + coin.Item.currentPrice.N * amountToSell;
+    const params = {
+        Item: {
+            id: { S: usdPortfolioCoinId },
+            '__typename': { S: 'PortfolioCoin' },
+            'createdAt': { S: date.toISOString() },
+            'updatedAt': { S: date.toISOString() },
+            'userId': { S: userId },
+            'coinId': { S: process.env.USD_COIN_ID },
+            'amount': { N: newUsdAmount.toString() }
+        },
+        TableName: process.env.PORTFOLIO_COIN_TABLE,
+    }
+    await ddb.putItem(params).promise();
+
+    // add new portfolio coin, or update the existing one
+
+
+    const newCoinAmount = coinAmount - amountToSell;
+    const params1 = {
+        Item: {
+            id: { S: `${userId}-${coin.Item.symbol.S}` },
+            '__typename': { S: 'PortfolioCoin' },
+            'createdAt': { S: date.toISOString() },
+            'updatedAt': { S: date.toISOString() },
+            'userId': { S: userId },
+            'coinId': { S: coin.Item.id.S },
+            'amount': { N: newCoinAmount.toString() }
+        },
+        TableName: process.env.PORTFOLIO_COIN_TABLE,
+    }
+    await ddb.putItem(params1).promise();
+
 }
 
 
