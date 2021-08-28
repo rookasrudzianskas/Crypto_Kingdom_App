@@ -19,31 +19,37 @@ const ddb = new DynamoDB();
 
 
 
-const getCoinAmount = async (coinId, userId) => {
+const getCoinAmount = async (coinPortfolioCoinId, userId) => {
     const params = {
         Key: {
-            coinId: { S: coinId },
-            userId: { S: userId },
+            id: { S: coinPortfolioCoinId },
         },
         TableName: process.env.PORTFOLIO_COIN_TABLE,
     }
     const coinData = await ddb.getItem(params).promise();
     console.log('portfolio coin data');
     console.log(coinData);
+    // @TODO check if it is indeed the usd coin and belongs to the user
+    // userId: { S: userId },
+
 }
 
 
-const getUsdAmount = async (userId) => {
+const getUsdAmount = async (usdPortfolioCoinId, userId) => {
     const params = {
         Key: {
-            coinId: { S: process.env.USD_COIN_ID },
-            userId: { S: userId },
+            id: { S: usdPortfolioCoinId },
         },
         TableName: process.env.PORTFOLIO_COIN_TABLE,
     }
     const coinData = await ddb.getItem(params).promise();
     console.log('usd coin data');
     console.log(coinData);
+    // @TODO check if it is indeed the usd coin and belongs to the user
+
+    // coinId: { S: process.env.USD_COIN_ID },
+    // userId: { S: userId },
+
 }
 
 const getCoin = async (coinId)  => {
@@ -92,7 +98,7 @@ const resolvers = {
             // }
 
             try {
-                await getCoin();
+                await getCoin(ctx.arguments.coinId);
             } catch (e) {
                 console.log("Error getting the coin");
                 console.log(e);
@@ -100,7 +106,7 @@ const resolvers = {
 
 
             try {
-                await getUsdAmount(ctx.identity.sub);
+                await getUsdAmount(ctx.arguments.usdPortfolioCoinId, ctx.identity.sub);
             } catch (e) {
                 console.log("Error getting the USD Coin");
                 console.log(e);
@@ -108,7 +114,7 @@ const resolvers = {
 
 
             try {
-                await getCoinAmount(ctx.arguments.coinId, ctx.identity.sub);
+                await getCoinAmount(ctx.arguments.coinPortfolioCoinId, ctx.identity.sub);
             } catch (e) {
                 console.log("Error getting the USD Coin");
                 console.log(e);
