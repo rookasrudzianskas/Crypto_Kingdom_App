@@ -35,10 +35,10 @@ type Coin @model(mutations: null) {
 
 type Mutation {
   exchangeCoins(
-    coinId: ID,
+    coinId: ID!,
     isBuy: Boolean!,
     amount: Float!,
-    usdPortfolioCoinId: ID!,
-    coinPortfolioCoinId: ID!,
+    usdPortfolioCoinId: ID!
+    coinPortfolioCoinId: ID!
   ): Boolean! @function(name: "cryptoKindomSubmitOrder-${env}")
 }

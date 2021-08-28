@@ -166,9 +166,11 @@ export type ModelCoinConnection = {
 };
 
 export type ExchangeCoinsMutationVariables = {
-  coinId?: string | null,
+  coinId: string,
   isBuy: boolean,
   amount: number,
+  usdPortfolioCoinId?: string | null,
+  coinPortfolioCoinId: string,
 };
 
 export type ExchangeCoinsMutation = {
