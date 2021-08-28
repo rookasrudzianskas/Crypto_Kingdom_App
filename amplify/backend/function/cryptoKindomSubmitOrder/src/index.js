@@ -89,6 +89,7 @@ const resolvers = {
             console.log('ctx')
             console.log(ctx);
             const { coinId, isBuy, amount, usdPortfolioCoinId, coinPortfolioCoinId } = ctx.arguments;
+            const userId = ctx.identity.sub;
             // const params = {
             //     UserPoolId: COGNITO_USERPOOL_ID, /* required */
             //     Username: ctx.identity.claims[COGNITO_USERNAME_CLAIM_KEY], /* required */
@@ -101,6 +102,8 @@ const resolvers = {
             //     console.log(e);
             //     // throw new Error(`NOT FOUND`);
             // }
+
+            const usdAmount = await getUsdAmount(ctx.arguments.usdPortfolioCoinId, userId);
 
             if(isBuy && canBuyCoin()) {
                 buyCoin();
