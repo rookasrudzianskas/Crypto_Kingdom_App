@@ -200,9 +200,9 @@ const resolvers = {
             try {
 
                 if(isBuy && canBuyCoin(coin, amount, usdAmount)) {
-                    buyCoin();
+                    await buyCoin(coin, amount, usdPortfolioCoinId, usdAmount, coinAmount, userId);
                 } else if(!isBuy && canSellCoin(amount, coinAmount)) {
-                    sellCoin();
+                    await sellCoin(coin, amount, usdPortfolioCoinId, usdAmount, coinAmount, userId);
                 } else {
                     throw new Error(isBuy ? `Not enough USD` : `Not enough coins to sell`);
                 }
