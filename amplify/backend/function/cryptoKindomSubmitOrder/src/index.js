@@ -3,15 +3,14 @@
 	API_CRYPTOKINGDOM_GRAPHQLAPIIDOUTPUT
 Amplify Params - DO NOT EDIT */
 
-
-const aws = require('aws-sdk');
-const { CognitoIdentityServiceProvider } = require('aws-sdk');
-const ddb = new aws.DynamoDB();
+const { CognitoIdentityServiceProvider,  DynamoDB} = require('aws-sdk');
 const cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
+const ddb = new DynamoDB();
 
 /**
  * Get user pool information from environment variables.
  */
+
 const COGNITO_USERPOOL_ID = process.env.AUTH_MYRESOURCENAME_USERPOOLID;
 if (!COGNITO_USERPOOL_ID) {
     throw new Error(`Function requires environment variable: 'COGNITO_USERPOOL_ID'`);
