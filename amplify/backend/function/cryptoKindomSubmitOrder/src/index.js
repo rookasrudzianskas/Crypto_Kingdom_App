@@ -71,13 +71,20 @@ const getCoin = async (coinId)  => {
 
 
 const canBuyCoin = (coin, amountToBuy, usdAmount) => {
-    return usdAmount >= coin.currentPrice * amountToBuy
+    return usdAmount >= coin.Item.currentPrice.N * amountToBuy
 }
 
 const canSellCoin = (amountToSell, portfolioAmount) => {
     return portfolioAmount >= amountToSell
 }
 
+const buyCoin = () => {
+    console.log("BUYYYYY");
+}
+
+const sellCoin = () => {
+    console.log("SELLLLL");
+}
 
 
 /**
@@ -108,19 +115,26 @@ const resolvers = {
             const coinAmount = !coinPortfolioCoinId ? 0 : await getCoinAmount(coinPortfolioCoinId, userId);
             const coin = await getCoin(coinId);
 
-            if(isBuy && canBuyCoin(coin, amount, usdAmount)) {
-                buyCoin();
-            } else if(!isBuy && canSellCoin(amount, coinAmount)) {
-                sellCoin();
-            } else {
-                throw new Error(isBuy ? `Not enough USD` : `Not enough coins to sell`);
-            }
-
             try {
-                await getCoin(ctx.arguments.coinId);
+
+                if(isBuy && canBuyCoin(coin, amount, usdAmount)) {
+                    buyCoin();
+                } else if(!isBuy && canSellCoin(amount, coinAmount)) {
+                    sellCoin();
+                } else {
+                    throw new Error(isBuy ? `Not enough USD` : `Not enough coins to sell`);
+                }
+
+                try {
+                    await getCoin(ctx.arguments.coinId);
+                } catch (e) {
+                    console.log("Error getting the coin");
+                    console.log(e);
+                }
+
             } catch (e) {
-                console.log("Error getting the coin");
                 console.log(e);
+                throw new Error(`Unexpected error exchanging coins`);
             }
 
 
