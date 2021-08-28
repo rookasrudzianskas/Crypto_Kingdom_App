@@ -4,18 +4,18 @@
 Amplify Params - DO NOT EDIT */
 
 const { CognitoIdentityServiceProvider,  DynamoDB} = require('aws-sdk');
-const cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
+// const cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
 const ddb = new DynamoDB();
 
-/**
- * Get user pool information from environment variables.
- */
-
-const COGNITO_USERPOOL_ID = process.env.COGNITO_USERPOOL_ID;
-if (!COGNITO_USERPOOL_ID) {
-    throw new Error(`Function requires environment variable: 'COGNITO_USERPOOL_ID'`);
-}
-const COGNITO_USERNAME_CLAIM_KEY = 'cognito:username';
+// /**
+//  * Get user pool information from environment variables.
+//  */
+//
+// const COGNITO_USERPOOL_ID = process.env.COGNITO_USERPOOL_ID;
+// if (!COGNITO_USERPOOL_ID) {
+//     throw new Error(`Function requires environment variable: 'COGNITO_USERPOOL_ID'`);
+// }
+// const COGNITO_USERNAME_CLAIM_KEY = 'cognito:username';
 
 
 
@@ -70,18 +70,18 @@ const resolvers = {
         exchangeCoins: async ctx => {
             console.log('ctx')
             console.log(ctx);
-            const params = {
-                UserPoolId: COGNITO_USERPOOL_ID, /* required */
-                Username: ctx.identity.claims[COGNITO_USERNAME_CLAIM_KEY], /* required */
-            };
-            try {
-                // Read more: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityServiceProvider.html#adminGetUser-property
-                const userResponse = await cognitoIdentityServiceProvider.adminGetUser(params).promise();
-                console.log(userResponse);
-            } catch (e) {
-                console.log(e);
-                // throw new Error(`NOT FOUND`);
-            }
+            // const params = {
+            //     UserPoolId: COGNITO_USERPOOL_ID, /* required */
+            //     Username: ctx.identity.claims[COGNITO_USERNAME_CLAIM_KEY], /* required */
+            // };
+            // try {
+            //     // Read more: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityServiceProvider.html#adminGetUser-property
+            //     const userResponse = await cognitoIdentityServiceProvider.adminGetUser(params).promise();
+            //     console.log(userResponse);
+            // } catch (e) {
+            //     console.log(e);
+            //     // throw new Error(`NOT FOUND`);
+            // }
 
             try {
                 await getCoin();
