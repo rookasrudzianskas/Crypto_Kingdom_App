@@ -78,7 +78,6 @@ const resolvers = {
                 // Read more: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/CognitoIdentityServiceProvider.html#adminGetUser-property
                 const userResponse = await cognitoIdentityServiceProvider.adminGetUser(params).promise();
                 console.log(userResponse);
-                return true;
             } catch (e) {
                 console.log(e);
                 // throw new Error(`NOT FOUND`);
@@ -106,7 +105,7 @@ const resolvers = {
                 console.log("Error getting the USD Coin");
                 console.log(e);
             }
-
+            return true;
         }
     },
 }
