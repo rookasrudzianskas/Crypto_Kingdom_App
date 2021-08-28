@@ -80,14 +80,20 @@ const canSellCoin = (amountToSell, portfolioAmount) => {
 
 const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId) => {
     // decrease USD
-
+    const date = new Date();
     const params = {
-        Key: {
+        Item: {
             id: { S: usdPortfolioCoinId },
+            '__typename': { S: 'PortfolioCoin' },
+            'createdAt': { S: date.toISOString() },
+            'updatedAt': { S: date.toISOString() },
+            'userId': { S: event.request.userAttributes.sub },
+            'coinId': { S: process.env.USD_COIN_ID },
+            'amount': { N: "100000.0" }
         },
         TableName: process.env.PORTFOLIO_COIN_TABLE,
     }
-    const coinData = await ddb.getItem(params).promise();
+    const coinData = await ddb.putItem(params).promise();
 
     // add new portfolio coin, or update the existing one
 }

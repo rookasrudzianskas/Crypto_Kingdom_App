@@ -7,8 +7,8 @@ export const exchangeCoins = /* GraphQL */ `
     $coinId: ID!
     $isBuy: Boolean!
     $amount: Float!
-    $usdPortfolioCoinId: ID!
-    $coinPortfolioCoinId: ID!
+    $usdPortfolioCoinId: ID
+    $coinPortfolioCoinId: ID
   ) {
     exchangeCoins(
       coinId: $coinId
