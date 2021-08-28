@@ -11,7 +11,7 @@ const ddb = new DynamoDB();
  * Get user pool information from environment variables.
  */
 
-const COGNITO_USERPOOL_ID = process.env.AUTH_MYRESOURCENAME_USERPOOLID;
+const COGNITO_USERPOOL_ID = process.env.COGNITO_USERPOOL_ID;
 if (!COGNITO_USERPOOL_ID) {
     throw new Error(`Function requires environment variable: 'COGNITO_USERPOOL_ID'`);
 }
