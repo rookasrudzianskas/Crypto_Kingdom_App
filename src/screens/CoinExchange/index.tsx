@@ -89,6 +89,7 @@ const CoinExchangeScreen = () => {
             return;
         }
 
+        /// if we went through the ifs, we do the place order
         placeOrder();
     };
 
