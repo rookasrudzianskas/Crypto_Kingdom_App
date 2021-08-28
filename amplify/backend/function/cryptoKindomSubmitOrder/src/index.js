@@ -125,18 +125,18 @@ const resolvers = {
                     throw new Error(isBuy ? `Not enough USD` : `Not enough coins to sell`);
                 }
 
+            } catch (e) {
+                console.log(e);
+                throw new Error(`Unexpected error exchanging coins`);
+            }
+
+
                 try {
                     await getCoin(ctx.arguments.coinId);
                 } catch (e) {
                     console.log("Error getting the coin");
                     console.log(e);
                 }
-
-            } catch (e) {
-                console.log(e);
-                throw new Error(`Unexpected error exchanging coins`);
-            }
-
 
             try {
                 await getUsdAmount(ctx.arguments.usdPortfolioCoinId, ctx.identity.sub);
