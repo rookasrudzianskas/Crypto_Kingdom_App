@@ -78,8 +78,18 @@ const canSellCoin = (amountToSell, portfolioAmount) => {
     return portfolioAmount >= amountToSell
 }
 
-const buyCoin = () => {
-    console.log("BUYYYYY");
+const buyCoin = async(coin, amountToBuy, usdPortfolioCoinId) => {
+    // decrease USD
+
+    const params = {
+        Key: {
+            id: { S: usdPortfolioCoinId },
+        },
+        TableName: process.env.PORTFOLIO_COIN_TABLE,
+    }
+    const coinData = await ddb.getItem(params).promise();
+
+    // add new portfolio coin, or update the existing one
 }
 
 const sellCoin = () => {
