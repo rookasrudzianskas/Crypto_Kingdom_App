@@ -16,10 +16,30 @@ import AppContext from "../../utils/AppContext";
 const ProfileScreen = (props) => {
 
     const [user, setUser] = useState(null);
-
     const {userId} = useContext(AppContext);
+    const navigation = useNavigation();
+
+    const fetchUser = async () => {
+        try {
+            const response = await API.graphql(graphqlOperation(getUser, { id: userId }));
+            // @ts-ignore
+            // console.log(response.data.getUser)
+            // @ts-ignore
+            setUser(response.data.getUser);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
+
+
 
     if(!user) {
+
         return (
             <View style={tw`bg-blue-700 flex-1`}>
                 <Text style={tw`text-xl text-white flex mx-auto my-auto`}>The profile info is loading...</Text>
@@ -28,22 +48,9 @@ const ProfileScreen = (props) => {
         )
     }
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await API.graphql(graphqlOperation(getUser, { id: userId }));
-                // @ts-ignore
-                console.log(response.data.getUser)
-                setUser(response.data.getUser);
-            } catch (e) {
-                console.log(e);
-            }
-        }
 
-        fetchUser();
-    }, []);
 
-    const navigation = useNavigation();
+
 
     const signOut = async () => {
         // sign out shit
