@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, FlatList} from "react-native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
 import image from '../../../assets/images/Saly-10.png';
 import styles from "./styles";
 import PortfolioCoin from "../../components/PortfolioCoin";
+import {graphqlOperation} from "aws-amplify";
+import {getUserPortfolio} from "./queries";
 
 const portfolioCoins = [{
     id: '1',
@@ -41,7 +43,14 @@ const portfolioCoins = [{
 // @ts-ignore
 const PortfolioScreen = (props) => {
 
+    const [portfolioCoins, setPortfolioCoins] = useState([]);
 
+
+    useEffect(() => {
+        graphqlOperation(
+            getUserPortfolio()
+        )
+    }, []);
 
 
     return (
