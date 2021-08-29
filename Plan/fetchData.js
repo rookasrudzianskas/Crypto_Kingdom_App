@@ -11,7 +11,7 @@ const URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD' +
     '-coin&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d';
 
 
-https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {
+https.get(URL, (resp) => {
     let data = '';
 
     // A chunk of data has been received.
@@ -21,7 +21,8 @@ https.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY', (resp) => {
 
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
-        console.log(JSON.parse(data).explanation);
+        // console.log(JSON.parse(data));
+        const data = (JSON.parse(data));
     });
 
 }).on("error", (err) => {
