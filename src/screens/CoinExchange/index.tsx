@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform} from "react-native";
+import {View, Text, Image, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, ActivityIndicator} from "react-native";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
@@ -10,6 +10,7 @@ import {API, graphqlOperation} from "aws-amplify";
 import {exchangeCoins} from "../../graphql/mutations";
 import AppContext from "../../utils/AppContext";
 import {listPortfolioCoins} from "../../graphql/queries";
+
 
 interface CoinExchangeProps {
 
@@ -206,6 +207,7 @@ const CoinExchangeScreen = () => {
             </View>
 
             <TouchableOpacity onPress={onPlaceOrder} activeOpacity={0.8} style={tw`mb-10 mx-10`} >
+                {isLoading && <ActivityIndicator />}
                 <View style={tw``}>
                     <View style={tw`px-16 py-5 bg-green-500 flex items-center border-4 border-green-400 rounded-xl  mt-10`}>
                         <Text style={tw` text-white text-center text-lg font-bold`}>Place Order!</Text>
