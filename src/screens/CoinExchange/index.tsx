@@ -104,15 +104,10 @@ const CoinExchangeScreen = () => {
 
     const placeOrder = async () => {
         try {
-            const response = await API.graphql(graphqlOperation(exchangeCoins, {
-                coinId: coin.id,
-                isBuy,
-                amount: parseFloat(coinAmount),
-                usdPortfolioCoinId: getPortfolioCoinId(USD_COIN_ID),
-                coinPortfolioCoinId: getPortfolioCoinId(coin.id),
-            }))
+            const response = await API.graphql(graphqlOperation(exchangeCoins, ));
+            console.log("THis is response", response);
         } catch (e) {
-            console.log(e);
+            console.log("Something cool", e);
         }
     }
 
