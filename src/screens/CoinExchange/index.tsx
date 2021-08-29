@@ -111,6 +111,7 @@ const CoinExchangeScreen = () => {
         }
         setIsLoading(true);
 
+
         try {
             const variables = {
                 coinId: coin.id,
