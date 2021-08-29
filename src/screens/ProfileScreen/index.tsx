@@ -1,25 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator} from "react-native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
 import image from '../../../assets/images/Saly-16.png';
 import styles from "../PortfolioScreen/styles";
 import UserRankingItem from "../../components/UserRankingItem";
-import { Auth } from 'aws-amplify';
+import {API, Auth, graphqlOperation} from 'aws-amplify';
 import {CommonActions, useNavigation} from "@react-navigation/native";
+import {getUser} from "../../graphql/queries";
+import AppContext from "../../utils/AppContext";
 
 
 
 // @ts-ignore
 const ProfileScreen = (props) => {
 
-    const [user, setUser] = useState({
-        id: '1',
-        name: 'Rokas',
-        netWorth: 79993,
-        email: 'rokas@byrookas.com',
-        image: 'https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg',
-    });
+    const [user, setUser] = useState(null);
+
+    const {userId} = useContext(AppContext);
 
     if(!user) {
         return (
@@ -30,11 +28,15 @@ const ProfileScreen = (props) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-
+                const response = await API.graphql(graphqlOperation(getUser, { id: userId }));
+                // @ts-ignore
+                setUser(response.data.getUser);
             } catch (e) {
                 console.log(e);
             }
         }
+
+        fetchUser();
     }, []);
 
     const navigation = useNavigation();
