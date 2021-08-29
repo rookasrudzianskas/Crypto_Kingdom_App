@@ -60,8 +60,10 @@ exports.handler = async (event, context) => {
 
             } catch (e) {
                 console.log(e);
-                }
-            });
+                context.done(null, event);
+            }
+            context.done(null, event);
+        });
 
 
     }).on("error", (err) => {
