@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, FlatList, TouchableOpacity} from "react-native";
+import {View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator} from "react-native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
 import image from '../../../assets/images/Saly-16.png';
@@ -20,6 +20,12 @@ const ProfileScreen = (props) => {
         email: 'rokas@byrookas.com',
         image: 'https://pbs.twimg.com/profile_images/1350895249678348292/RS1Aa0iK.jpg',
     });
+
+    if(!user) {
+        return (
+            <ActivityIndicator color={'white'} />
+        )
+    }
 
     const navigation = useNavigation();
 
