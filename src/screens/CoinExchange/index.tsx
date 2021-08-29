@@ -109,7 +109,7 @@ const CoinExchangeScreen = () => {
                 isBuy,
                 amount: parseFloat(coinAmount),
                 usdPortfolioCoinId: getPortfolioCoinId(USD_COIN_ID),
-                coinPortfolioCoinId: getCoinPortfolioCoinId(),
+                coinPortfolioCoinId: getPortfolioCoinId(coin.id),
             }))
         } catch (e) {
             console.log(e);
