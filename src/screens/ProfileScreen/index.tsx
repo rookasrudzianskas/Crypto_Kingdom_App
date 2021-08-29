@@ -81,7 +81,7 @@ const ProfileScreen = (props) => {
                            <Text style={[styles.name, tw` text-gray-200 ml-5 text-sm font-bold`]}>{user.email}</Text>
                        </View>
                        <View style={tw``}>
-                           <Text style={tw`text-xl text-green-500 font-bold`}>$ {user.netWorth}</Text>
+                           <Text style={tw`text-xl text-green-500 font-bold`}>$ {user.networth}</Text>
                        </View>
 
                 </View>
