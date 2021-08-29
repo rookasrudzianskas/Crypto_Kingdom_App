@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
         const date = new Date();
 
         // The whole response has been received. Print out the result.
-        resp.on('end', () => {
+        resp.on('end', async () => {
             // console.log(JSON.parse(data));
             const dataJson = JSON.parse(data);
 
@@ -46,7 +46,21 @@ exports.handler = async (event, context) => {
                 priceHistoryString: { S: JSON.stringify(entry.sparkline_in_7d.price) },
             }));
 
-            console.log("The items are: ", Items);
+            // console.log("The items are: ", Items);
+            await Promise.all(Items.map(Item => {
+                const params = {
+                    Item,
+                    TableName: process.env.COIN_TABLE,
+                }
+
+                try {
+                    await ddb.putItem(params).promise();
+                    console.log("Success");
+                } catch (e) {
+                    console.log("Error", e);
+                }
+
+            }))
         });
 
     }).on("error", (err) => {
