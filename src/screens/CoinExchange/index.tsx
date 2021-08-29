@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform} from "react-native";
-import {useRoute} from "@react-navigation/native";
+import {useNavigation, useRoute} from "@react-navigation/native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
 import image from '../../../assets/images/Saly-31.png';
@@ -20,6 +20,7 @@ const USD_COIN_ID = 'eaca01c8-0650-44ec-864d-31b53d86c3b9';
 const CoinExchangeScreen = () => {
 
      const route = useRoute();
+     const navigation = useNavigation();
 
     // @ts-ignore
     const isBuy = route?.params?.isBuy;
@@ -112,7 +113,7 @@ const CoinExchangeScreen = () => {
                 coinPortfolioCoinId: await getPortfolioCoinId(coin.id),
             }
 
-            console.log("Variables", variables);
+            // console.log("Variables", variables);
 
             const response = await API.graphql(graphqlOperation(exchangeCoins, variables));
             console.log("THis is response", response);
