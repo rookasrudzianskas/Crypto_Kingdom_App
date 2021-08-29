@@ -22,7 +22,12 @@ https.get(URL, (resp) => {
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
         // console.log(JSON.parse(data));
-        const data = (JSON.parse(data));
+        const dataJson = JSON.parse(data);
+
+
+        const Items = dataJson.map(entry => ({
+
+        }));
     });
 
 }).on("error", (err) => {
