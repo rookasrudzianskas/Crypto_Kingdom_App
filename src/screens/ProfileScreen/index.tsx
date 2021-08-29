@@ -67,7 +67,7 @@ const ProfileScreen = (props) => {
 
 
     return (
-        <View style={[styles.root, tw`bg-blue-700`]}>
+        <View style={[styles.root, tw`bg-blue-700 flex-1`]}>
             <>
                 <View style={tw`mt-10`}>
                     <Image  source={image} style={[styles.image, tw``]}/>
