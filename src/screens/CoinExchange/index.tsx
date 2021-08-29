@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform} from "react-native";
 import {useRoute} from "@react-navigation/native";
 import tw from "tailwind-react-native-classnames";
@@ -8,10 +8,14 @@ import styles from "./styles";
 import {API, graphqlOperation} from "aws-amplify";
 // @ts-ignore
 import {exchangeCoins} from "../../graphql/mutations";
+import AppContext from "../../utils/AppContext";
+import {listPortfolioCoins} from "../../graphql/queries";
 
 interface CoinExchangeProps {
 
 }
+
+const USD_COIN_ID = 'eaca01c8-0650-44ec-864d-31b53d86c3b9';
 
 const CoinExchangeScreen = () => {
 
@@ -29,6 +33,8 @@ const CoinExchangeScreen = () => {
 
     const [coinAmount, setCoinAmount] = useState('');
     const [coinUSDValue, setCoinUSDValue] = useState('');
+
+    const { userId } = useContext(AppContext);
 
     const maxUSD = 100000;//  @TODO fetch from API
 
@@ -65,12 +71,45 @@ const CoinExchangeScreen = () => {
 
     }, [coinUSDValue]);
 
+    const getUsdPortfolioCoinId = async () => {
+        try {
+            // @ts-ignore
+            const response = await API.graphql(graphqlOperation(listPortfolioCoins, { filter: {
+                    and: {
+                        // @ts-ignore
+                        coinId: { eq: USD_COIN_ID },
+                        userId: { eq: userId }
+                    }
+                }
+            }));
+
+            console.log("This is the response from filter 🔥", response);
+
+            // @ts-ignore
+            if (response.data.listPortfolioCoins.items.length > 0) {
+                // @ts-ignore
+                return response.data.listPortfolioCoins.items[0].id
+            } else {
+                return null;
+            }
+
+            // console.log("This is awesome response 🍚", response);
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
+    }
+
+
+
     const placeOrder = async () => {
         try {
             const response = await API.graphql(graphqlOperation(exchangeCoins, {
                 coinId: coin.id,
                 isBuy,
                 amount: parseFloat(coinAmount),
+                usdPortfolioCoinId: getUsdPortfolioCoinId(),
+                coinPortfolioCoinId: getCoinPortfolioCoinId(),
             }))
         } catch (e) {
             console.log(e);
