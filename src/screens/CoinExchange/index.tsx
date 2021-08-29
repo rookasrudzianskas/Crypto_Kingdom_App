@@ -145,7 +145,7 @@ const CoinExchangeScreen = () => {
         }
 
         // @TODO could be the problem, required to add the !portfolioCoin
-        if(!isBuy && (portfolioCoin || parseFloat(coinAmount) > portfolioCoin.amount)) {
+        if(!isBuy && (!portfolioCoin || parseFloat(coinAmount) > portfolioCoin.amount)) {
             Alert.alert('Error', `Not enough ${coin?.symbol} currency coins. Max: ${coin.amount || 0}`);
             return;
         }
