@@ -186,7 +186,7 @@ const resolvers = {
             console.log('ctx')
             console.log(ctx);
             const { coinId, isBuy, amount, usdPortfolioCoinId, coinPortfolioCoinId } = ctx.arguments;
-            const userId = ctx.identity.sub;
+            const userId = (ctx.identity.sub).toString();
             // const params = {
             //     UserPoolId: COGNITO_USERPOOL_ID, /* required */
             //     Username: ctx.identity.claims[COGNITO_USERNAME_CLAIM_KEY], /* required */
