@@ -47,18 +47,23 @@ const PortfolioScreen = (props) => {
 
     const [portfolioCoins, setPortfolioCoins] = useState([]);
     const {userId} = useContext(AppContext);
+    const [loading, setLoading] = useState(false);
 
     const fetchPortfolio = async () => {
+        setLoading(true);
         try {
             const response = await API.graphql(graphqlOperation(getUserPortfolio, {
                 id: userId,
 
             }))
 
+            // @ts-ignore
             console.log(response.data.getUser);
 
         } catch (e) {
             console.log(e);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -81,7 +86,7 @@ const PortfolioScreen = (props) => {
                 </View>
             </>
             {/*<View style={tw`bg-blu`}>*/}
-            <FlatList showsVerticalScrollIndicator={false} style={{width: '100%'}} data={portfolioCoins} renderItem={({item}) => <PortfolioCoin portfolioCoin={item}  />}/>
+            <FlatList onRefresh={fetchPortfolio} refreshing={loading} showsVerticalScrollIndicator={false} style={{width: '100%'}} data={portfolioCoins} renderItem={({item}) => <PortfolioCoin portfolioCoin={item}  />}/>
             {/*</View>*/}
             </View>
     );
