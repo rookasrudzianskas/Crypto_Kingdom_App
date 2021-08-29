@@ -46,22 +46,23 @@ exports.handler = async (event, context) => {
                 priceHistoryString: { S: JSON.stringify(entry.sparkline_in_7d.price) },
             }));
 
-            // console.log("The items are: ", Items);
-            await Promise.all(Items.map(Item => {
-                const params = {
-                    Item,
-                    TableName: process.env.COIN_TABLE,
-                }
+            try {
+                // console.log("The items are: ", Items);
+                await Promise.all(Items.map(Item => {
+                    const params = {
+                        Item,
+                        TableName: process.env.COIN_TABLE,
+                    }
 
-                try {
-                    await ddb.putItem(params).promise();
-                    console.log("Success");
-                } catch (e) {
-                    console.log("Error", e);
-                }
+                    return ddb.putItem(params).promise();
 
-            }))
-        });
+                }))
+
+            } catch (e) {
+                console.log(e);
+                }
+            });
+
 
     }).on("error", (err) => {
         console.log("Error: " + err.message);
