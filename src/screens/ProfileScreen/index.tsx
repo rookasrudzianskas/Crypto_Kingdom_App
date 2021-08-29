@@ -74,13 +74,17 @@ const ProfileScreen = (props) => {
                 </View>
                    <View style={tw`flex flex-row items-center mt-32 `}>
                        <View>
+    {/*// @ts-ignore*/}
                            <Image source={{uri: user.image}} style={[styles.image1, tw`rounded-full`]} />
                        </View>
                        <View style={tw`flex flex-1`}>
+    {/*// @ts-ignore*/}
                            <Text style={[styles.name, tw` text-white ml-5 text-lg font-bold`]}>{user.name}</Text>
+    {/*// @ts-ignore*/}
                            <Text style={[styles.name, tw` text-gray-200 ml-5 text-sm font-bold`]}>{user.email}</Text>
                        </View>
                        <View style={tw``}>
+    {/*// @ts-ignore*/}
                            <Text style={tw`text-xl text-green-500 font-bold`}>$ {user.networth}</Text>
                        </View>
 
