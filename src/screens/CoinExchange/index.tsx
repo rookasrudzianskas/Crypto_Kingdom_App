@@ -71,13 +71,13 @@ const CoinExchangeScreen = () => {
 
     }, [coinUSDValue]);
 
-    const getUsdPortfolioCoinId = async () => {
+    const getPortfolioCoinId = async (coinId: string) => {
         try {
             // @ts-ignore
             const response = await API.graphql(graphqlOperation(listPortfolioCoins, { filter: {
                     and: {
                         // @ts-ignore
-                        coinId: { eq: USD_COIN_ID },
+                        coinId: { eq: coinId },
                         userId: { eq: userId }
                     }
                 }
@@ -108,7 +108,7 @@ const CoinExchangeScreen = () => {
                 coinId: coin.id,
                 isBuy,
                 amount: parseFloat(coinAmount),
-                usdPortfolioCoinId: getUsdPortfolioCoinId(),
+                usdPortfolioCoinId: getPortfolioCoinId(USD_COIN_ID),
                 coinPortfolioCoinId: getCoinPortfolioCoinId(),
             }))
         } catch (e) {
