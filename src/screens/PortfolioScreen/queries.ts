@@ -6,23 +6,19 @@ export const getUserPortfolio = /* GraphQL */ `
     query GetUser($id: ID!) {
         getUser(id: $id) {
             id
-            name
-            email
-            image
             networth
             portfolioCoins {
                 items {
                     id
                     amount
-                    userId
-                    coinId
-                    createdAt
-                    updatedAt
+                    coin {
+                        id
+                        name
+                        symbol
+                    }
                 }
                 nextToken
             }
-            createdAt
-            updatedAt
         }
     }
 `;
