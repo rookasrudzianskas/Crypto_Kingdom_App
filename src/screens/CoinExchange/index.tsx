@@ -116,8 +116,14 @@ const CoinExchangeScreen = () => {
             // console.log("Variables", variables);
 
             const response = await API.graphql(graphqlOperation(exchangeCoins, variables));
-            console.log("THis is response", response);
+            // @ts-ignore
+            if(response.data.exchangeCoins) {
+                navigation.navigate('Portfolio');
+            } else {
+                Alert.alert("Something bad happened 🚀", "There was an error exchanging coins");
+            }
         } catch (e) {
+            Alert.alert("Something bad happened 🚀", "There was an error exchanging coins");
             console.log("Something cool", e);
         }
     }
