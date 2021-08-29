@@ -112,8 +112,7 @@ const CoinExchangeScreen = () => {
                 coinPortfolioCoinId: await getPortfolioCoinId(coin.id),
             }
 
-            // console.log("Variables", variables);
-            // return;
+            console.log("Variables", variables);
 
             const response = await API.graphql(graphqlOperation(exchangeCoins, variables));
             console.log("THis is response", response);
