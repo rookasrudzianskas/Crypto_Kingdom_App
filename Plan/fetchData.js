@@ -28,9 +28,21 @@ https.get(URL, (resp) => {
 
 
         const Items = dataJson.map(entry => ({
+            id: { S: entry.id },
             cgId: { S: entry.id },
-            createdAt: { S: entry.id },
+            createdAt: { S: date.toISOString() },
+            updatedAt: { S: date.toISOString() },
+            currentPrice: { N: entry.current_price.toString() },
+            image: { S: entry.image },
+            name: { S: entry.name },
+            symbol: { S: entry.symbol },
+            valueChange24H: { N: entry.price_change_percentage_1h_in_currency.toString() },
+            valueChange1D: { N: entry.price_change_percentage_24h_in_currency.toString() },
+            valueChange7D: { N: entry.price_change_percentage_7d_in_currency.toString() },
+            priceHistoryString: { S: JSON.stringify(entry.sparkline_in_7d.price) },
         }));
+
+        console.log("The items are: ", Items);
     });
 
 }).on("error", (err) => {
