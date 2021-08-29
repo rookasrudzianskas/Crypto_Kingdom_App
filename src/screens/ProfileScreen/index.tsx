@@ -21,7 +21,10 @@ const ProfileScreen = (props) => {
 
     if(!user) {
         return (
-            <ActivityIndicator color={'white'} />
+            <View style={tw`bg-blue-700 flex-1`}>
+                <Text style={tw`text-xl text-white flex mx-auto my-auto`}>The profile info is loading...</Text>
+                <ActivityIndicator color={'white'} style={tw`mx-auto my-auto -mt-72`} />
+            </View>
         )
     }
 
@@ -30,6 +33,7 @@ const ProfileScreen = (props) => {
             try {
                 const response = await API.graphql(graphqlOperation(getUser, { id: userId }));
                 // @ts-ignore
+                console.log(response.data.getUser)
                 setUser(response.data.getUser);
             } catch (e) {
                 console.log(e);
