@@ -49,9 +49,7 @@ const PortfolioScreen = (props) => {
     const {userId} = useContext(AppContext);
 
     useEffect(() => {
-        graphqlOperation(
-            getUserPortfolio()
-        )
+
     }, []);
 
 
