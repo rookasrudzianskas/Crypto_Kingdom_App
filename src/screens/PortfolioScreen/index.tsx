@@ -5,7 +5,7 @@ import tw from "tailwind-react-native-classnames";
 import image from '../../../assets/images/Saly-10.png';
 import styles from "./styles";
 import PortfolioCoin from "../../components/PortfolioCoin";
-import {graphqlOperation} from "aws-amplify";
+import {API, graphqlOperation} from "aws-amplify";
 import {getUserPortfolio} from "./queries";
 import App from "../../../App";
 import AppContext from "../../utils/AppContext";
@@ -48,8 +48,22 @@ const PortfolioScreen = (props) => {
     const [portfolioCoins, setPortfolioCoins] = useState([]);
     const {userId} = useContext(AppContext);
 
-    useEffect(() => {
+    const fetchPortfolio = async () => {
+        try {
+            const response = await API.graphql(graphqlOperation(getUserPortfolio, {
+                id: userId,
 
+            }))
+
+            console.log(response.data.getUser);
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    useEffect( () => {
+        fetchPortfolio();
     }, []);
 
 
