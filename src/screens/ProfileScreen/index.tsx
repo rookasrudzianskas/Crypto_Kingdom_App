@@ -23,7 +23,7 @@ const ProfileScreen = (props) => {
         return (
             <View style={tw`bg-blue-700 flex-1`}>
                 <Text style={tw`text-xl text-white flex mx-auto my-auto`}>The profile info is loading...</Text>
-                <ActivityIndicator color={'white'} style={tw`mx-auto my-auto -mt-72`} />
+                <ActivityIndicator color={'white'} style={tw`mx-auto my-auto -mt-96`} />
             </View>
         )
     }
