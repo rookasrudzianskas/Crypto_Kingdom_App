@@ -48,18 +48,20 @@ const PortfolioScreen = (props) => {
     const [portfolioCoins, setPortfolioCoins] = useState([]);
     const {userId} = useContext(AppContext);
     const [loading, setLoading] = useState(false);
+    const [balance, setBalance] = useState(0);
 
     const fetchPortfolio = async () => {
         setLoading(true);
         try {
             const response = await API.graphql(graphqlOperation(getUserPortfolio, {
                 id: userId,
-
             }))
 
             // @ts-ignore
             console.log(response.data.getUser);
-
+            // @ts-ignore
+            setBalance(response.data.getUser.networth);
+            setPortfolioCoins(response.data.getUser.portfolioCoins.items);
         } catch (e) {
             console.log(e);
         } finally {
@@ -80,7 +82,7 @@ const PortfolioScreen = (props) => {
                     <View style={[tw`mt-12`]}>
                         <Text style={tw`text-3xl text-gray-200 font-bold`}>Portfolio balance</Text>
                         <View style={tw`mt-2`}>
-                            <Text style={tw`text-3xl text-white font-bold`}>$ <Text style={tw`text-4xl font-extrabold text-green-500 mt-5 text-center`}>64,423</Text></Text>
+                            <Text style={tw`text-3xl text-white font-bold`}>$ <Text style={tw`text-4xl font-extrabold text-green-500 mt-5 text-center`}>{balance}</Text></Text>
                         </View>
                     </View>
                 </View>
