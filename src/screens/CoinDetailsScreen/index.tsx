@@ -251,6 +251,7 @@ const CoinDetailsScreen = () => {
             }
 
             // console.log("This is awesome response 🍚", response);
+            /// done for today
         } catch (e) {
             console.log("Failed 🍚", e);
         } finally {
