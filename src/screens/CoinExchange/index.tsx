@@ -219,7 +219,7 @@ const CoinExchangeScreen = () => {
 
             ) : (
 
-                <TouchableOpacity activeOpacity={0.8} style={tw`mb-10 mx-10`} >
+                <TouchableOpacity activeOpacity={1} style={tw`mb-10 mx-10`} >
                     <View style={tw``}>
                         <View style={tw`px-16 py-5 bg-green-500 flex items-center border-4 border-green-400 rounded-xl  mt-10`}>
                             <Text style={tw` text-white text-center text-lg font-bold`}>Place Order!</Text>
