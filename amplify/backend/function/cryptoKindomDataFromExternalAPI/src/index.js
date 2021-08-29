@@ -1,15 +1,54 @@
+const https = require('https');
+
+exports.handler = async (event, context) => {
+    const URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD' +
+        '&ids=bitcoin%2Cethereum%2Ctether%2Cpolkadot%2Ccardano%2Cbinancecoin%2Cripple' +
+        '%2Clitecoin%2Cchainlink%2Cbitcoin-cash%2Cstellar%2Cusd-coin%2Cdogecoin%2Cwrapped' +
+        '-bitcoin%2Cuniswap%2Caave%2Ccosmos%2Ceos%2Cmonero%2Cbitcoin-cash-sv%2Ciota%2' +
+        'Ctron%2Cnem%2Ctezos%2Cvechain%2Ctheta-token%2Chavven%2Cavalanche-2%2Cneo%2Chuobi-token%' +
+        '2Cterra-luna%2Cdash%2Cokb%2Ccrypto-com-chain%2Cthe-graph%2Celrond-erd-2%2Ccompound-ether%' +
+        '2Csolana%2Cmaker%2Cftx-token%2Ccdai%2Cdai%2Cfilecoin%2Ccelsius-degree-token%2Ckusama%2Csushi%' +
+        '2Ccompound-governance-token%2Czcash%2Cethereum-classic%2Ccompound-usd' +
+        '-coin&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d';
 
 
-exports.handler = async (event) => {
-    // TODO implement
-    const response = {
-        statusCode: 200,
-    //  Uncomment below to enable CORS requests
-    //  headers: {
-    //      "Access-Control-Allow-Origin": "*",
-    //      "Access-Control-Allow-Headers": "*"
-    //  }, 
-        body: JSON.stringify('Hello from Lambda!'),
-    };
-    return response;
+    https.get(URL, (resp) => {
+        let data = '';
+
+        // A chunk of data has been received.
+        resp.on('data', (chunk) => {
+            data += chunk;
+        });
+
+        const date = new Date();
+
+        // The whole response has been received. Print out the result.
+        resp.on('end', () => {
+            // console.log(JSON.parse(data));
+            const dataJson = JSON.parse(data);
+
+
+            const Items = dataJson.map(entry => ({
+                id: { S: entry.id },
+                cgId: { S: entry.id },
+                createdAt: { S: date.toISOString() },
+                updatedAt: { S: date.toISOString() },
+                currentPrice: { N: entry.current_price.toString() },
+                image: { S: entry.image },
+                name: { S: entry.name },
+                symbol: { S: entry.symbol },
+                valueChange24H: { N: entry.price_change_percentage_1h_in_currency.toString() },
+                valueChange1D: { N: entry.price_change_percentage_24h_in_currency.toString() },
+                valueChange7D: { N: entry.price_change_percentage_7d_in_currency.toString() },
+                priceHistoryString: { S: JSON.stringify(entry.sparkline_in_7d.price) },
+            }));
+
+            console.log("The items are: ", Items);
+        });
+
+    }).on("error", (err) => {
+        console.log("Error: " + err.message);
+        context.done(null, event);
+    });
+
 };
