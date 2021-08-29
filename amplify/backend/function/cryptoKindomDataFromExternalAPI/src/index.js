@@ -1,5 +1,8 @@
 const https = require('https');
 
+const aws = require('aws-sdk');
+const ddb = new aws.DynamoDB();
+
 exports.handler = async (event, context) => {
     const URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD' +
         '&ids=bitcoin%2Cethereum%2Ctether%2Cpolkadot%2Ccardano%2Cbinancecoin%2Cripple' +
