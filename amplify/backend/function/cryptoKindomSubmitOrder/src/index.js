@@ -185,8 +185,17 @@ const resolvers = {
         exchangeCoins: async ctx => {
             console.log('ctx')
             console.log(ctx);
-            const { coinId, isBuy, amount, usdPortfolioCoinId, coinPortfolioCoinId } = ctx.arguments;
+            const {
+                coinId,
+                isBuy,
+                amount,
+                usdPortfolioCoinId,
+                coinPortfolioCoinId,
+            } = ctx.arguments;
             const userId = ctx.identity.sub;
+
+            const usdAmount = !usdPortfolioCoinId ? 0 : await getUsdAmount(usdPortfolioCoinId, userId);
+            const coinAmount = !coinPortfolioCoinId ? 0 : await getCoinAmount(coinPortfolioCoinId, userId);
             // const params = {
             //     UserPoolId: COGNITO_USERPOOL_ID, /* required */
             //     Username: ctx.identity.claims[COGNITO_USERNAME_CLAIM_KEY], /* required */
@@ -200,23 +209,22 @@ const resolvers = {
             //     // throw new Error(`NOT FOUND`);
             // }
 
-            const usdAmount = !usdPortfolioCoinId ? 0 : await getUsdAmount(usdPortfolioCoinId, userId);
-            const coinAmount = !coinPortfolioCoinId ? 0 : await getCoinAmount(coinPortfolioCoinId, userId);
+            // const usdAmount = !usdPortfolioCoinId ? 0 : await getUsdAmount(usdPortfolioCoinId, userId);
+            // const coinAmount = !coinPortfolioCoinId ? 0 : await getCoinAmount(coinPortfolioCoinId, userId);
             const coin = await getCoin(coinId);
 
             try {
-
-                if(isBuy && canBuyCoin(coin, amount, usdAmount)) {
+                if (isBuy && canBuyCoin(coin, amount, usdAmount)) {
                     await buyCoin(coin, amount, usdPortfolioCoinId, usdAmount, coinAmount, userId);
-                } else if(!isBuy && canSellCoin(amount, coinAmount)) {
+                }
+                else if (!isBuy && canSellCoin(amount, coinAmount)) {
                     await sellCoin(coin, amount, usdPortfolioCoinId, usdAmount, coinAmount, userId);
                 } else {
-                    throw new Error(isBuy ? `Not enough USD` : `Not enough coins to sell`);
+                    throw new Error(isBuy ? `Not enough USD` : 'Not enough coins to sell');
                 }
-
             } catch (e) {
                 console.log(e);
-                throw new Error(`Unexpected error exchanging coins`);
+                throw new Error('Unexpected Error exchanging coins');
             }
 
             return true;
