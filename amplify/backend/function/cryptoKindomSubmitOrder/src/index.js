@@ -203,3 +203,4 @@ exports.handler = async (event) => {
     throw new Error("Resolver not found.");
 };
 
+// the exchange coin function is done 🔥
