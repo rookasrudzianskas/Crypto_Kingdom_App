@@ -116,11 +116,11 @@ const buyCoin = async(
     const newCoinAmount = coinAmount + amountToBuy;
     const params1 = {
         Item: {
-            id: { S: `${userId.toString()}-${coin.Item.symbol.S}` },
+            id: { S: `${userId}-${coin.Item.symbol.S}` },
             '__typename': { S: 'PortfolioCoin' },
             'createdAt': { S: date.toISOString() },
             'updatedAt': { S: date.toISOString() },
-            'userId': { S: userId.toString() },
+            'userId': { S: userId },
             'coinId': { S: coin.Item.id.S },
             'amount': { N: newCoinAmount.toString() }
         },
@@ -147,7 +147,7 @@ const sellCoin = async(
             '__typename': { S: 'PortfolioCoin' },
             'createdAt': { S: date.toISOString() },
             'updatedAt': { S: date.toISOString() },
-            'userId': { S: userId.toString() },
+            'userId': { S: userId },
             'coinId': { S: process.env.USD_COIN_ID },
             'amount': { N: newUsdAmount.toString() }
         },
@@ -161,11 +161,11 @@ const sellCoin = async(
     const newCoinAmount = coinAmount - amountToSell;
     const params1 = {
         Item: {
-            id: { S: `${userId.toString()}-${coin.Item.symbol.S}` },
+            id: { S: `${userId}-${coin.Item.symbol.S}` },
             '__typename': { S: 'PortfolioCoin' },
             'createdAt': { S: date.toISOString() },
             'updatedAt': { S: date.toISOString() },
-            'userId': { S: userId.toString() },
+            'userId': { S: userId },
             'coinId': { S: coin.Item.id.S },
             'amount': { N: newCoinAmount.toString() }
         },
