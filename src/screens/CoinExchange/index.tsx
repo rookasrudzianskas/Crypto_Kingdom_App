@@ -34,6 +34,7 @@ const CoinExchangeScreen = () => {
 
     const [coinAmount, setCoinAmount] = useState('');
     const [coinUSDValue, setCoinUSDValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const { userId } = useContext(AppContext);
 
@@ -104,6 +105,11 @@ const CoinExchangeScreen = () => {
 
 
     const placeOrder = async () => {
+        if(isLoading) {
+            return;
+        }
+        setIsLoading(true);
+
         try {
             const variables = {
                 coinId: coin.id,
@@ -125,6 +131,8 @@ const CoinExchangeScreen = () => {
         } catch (e) {
             Alert.alert("Something bad happened 🚀", "There was an error exchanging coins");
             console.log("Something cool", e);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -143,6 +151,8 @@ const CoinExchangeScreen = () => {
         /// if we went through the ifs, we do the place order
         placeOrder();
     };
+
+
 
 
     // @ts-ignore
