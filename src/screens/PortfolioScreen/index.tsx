@@ -42,6 +42,8 @@ const portfolioCoins = [{
 const PortfolioScreen = (props) => {
 
 
+
+
     return (
         <View style={[styles.root, tw`bg-blue-700`]}>
             <>
