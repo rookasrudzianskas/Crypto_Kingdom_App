@@ -78,7 +78,9 @@ const PortfolioScreen = (props) => {
     return (
         <View style={[styles.root, tw`bg-blue-700`]}>
             <>
-                <Image  source={image} style={styles.image}/>
+                <View>
+                    <Image  source={image} style={[styles.image, tw`mt-8`]}/>
+                </View>
                 <View style={[styles.balanceContainer, tw`mb-16`]}>
                     <View style={[tw`mt-12`]}>
                         <Text style={tw`text-3xl text-gray-200 font-bold`}>Portfolio balance</Text>
