@@ -5,16 +5,19 @@ import styles from "./style";
 import {Image, Pressable} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 
-export const PortfolioCoinProps = {
+export interface PortfolioCoinProps {
     portfolioCoin: {
-        id: String,
-        image: String,
-        name: String,
-        symbol: String,
-        amount: Number,
-        valueUSD: Number,
+        amount: number,
+        coin: {
+            id: string,
+            image: string,
+            name: string,
+            symbol: string,
+            currentPrice: number,
+
+        }
     }
-};
+}
 
 // @ts-ignore
 const PortfolioCoin = (props: PortfolioCoinProps) => {
@@ -23,12 +26,14 @@ const PortfolioCoin = (props: PortfolioCoinProps) => {
 
     const {
         portfolioCoin: {
-            id,
-            image,
-            name,
-            symbol,
             amount,
-            valueUSD,
+            coin: {
+                id,
+                image,
+                name,
+                symbol,
+                currentPrice,
+            }
         },
     } = props;
 
@@ -43,7 +48,7 @@ const PortfolioCoin = (props: PortfolioCoinProps) => {
                 </View>
 
                 <View style={tw`flex flex-col  bg-blue-700 items-center justify-center`}>
-                    <Text style={[styles.name, tw`mr-5 text-xl  text-white font-extrabold text-green-600`]}>${valueUSD}</Text>
+                    <Text style={[styles.name, tw`mr-5 text-xl  text-white font-extrabold text-green-600`]}>${amount * currentPrice}</Text>
                     <Text style={[styles.symbol, tw`mt-2 mr-3 text-sm  text-white font-bold`]}>{symbol} {amount}</Text>
                 </View>
 

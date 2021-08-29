@@ -15,6 +15,8 @@ export const getUserPortfolio = /* GraphQL */ `
                         id
                         name
                         symbol
+                        image
+                        currentPrice
                     }
                 }
                 nextToken
