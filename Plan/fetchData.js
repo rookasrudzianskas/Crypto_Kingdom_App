@@ -19,6 +19,8 @@ https.get(URL, (resp) => {
         data += chunk;
     });
 
+    const date = new Date();
+
     // The whole response has been received. Print out the result.
     resp.on('end', () => {
         // console.log(JSON.parse(data));
@@ -26,7 +28,8 @@ https.get(URL, (resp) => {
 
 
         const Items = dataJson.map(entry => ({
-
+            cgId: { S: entry.id },
+            createdAt: { S: entry.id },
         }));
     });
 
