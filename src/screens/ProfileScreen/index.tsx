@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator} from "react-native";
 import tw from "tailwind-react-native-classnames";
 // @ts-ignore
@@ -26,6 +26,16 @@ const ProfileScreen = (props) => {
             <ActivityIndicator color={'white'} />
         )
     }
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    }, []);
 
     const navigation = useNavigation();
 
