@@ -45,8 +45,8 @@ const MarketCoin = (props: PortfolioCoinProps) => {
                 </View>
 
                 <View style={tw`flex flex-col  bg-blue-700 items-center justify-center`}>
-                    <Text style={[styles.name, tw`mr-5 text-xl  text-white font-extrabold text-green-600`]}>$ {currentPrice}</Text>
-                    <PercentageChange  value={valueChange24H}/>
+                    <Text style={[styles.name, tw`mr-5 text-xl  text-white font-extrabold text-green-400`]}>$ {currentPrice.toFixed(3)}</Text>
+                    <PercentageChange  value={valueChange24H.toFixed(3)}/>
                 </View>
 
         </Pressable>
