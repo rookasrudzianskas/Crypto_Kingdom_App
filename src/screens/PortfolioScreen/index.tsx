@@ -57,9 +57,9 @@ const PortfolioScreen = (props) => {
                     <View style={[tw`mt-12`]}>
                         <Text style={tw`text-3xl text-gray-200 font-bold`}>Portfolio balance</Text>
                         <View style={tw`mt-2`}>
-                            <Text style={tw`text-3xl text-white font-bold`}>$ <Text style={tw`text-4xl font-extrabold text-green-500 mt-5 text-center`}>
+                            <Text style={tw`text-3xl text-white font-bold`}>$ <Text style={tw`text-4xl font-extrabold text-green-500 mt-5 text-center`}>{balance}
                                 {/*<NumberFormat value={balance} thousandSeparator={true} prefix={'$'} />*/}
-                                <NumberFormat value={10} displayType="text" />
+                                {/*<NumberFormat value={10} displayType="text" />*/}
                             </Text></Text>
                         </View>
                     </View>
