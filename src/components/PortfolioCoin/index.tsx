@@ -47,9 +47,9 @@ const PortfolioCoin = (props: PortfolioCoinProps) => {
                     <Text style={[styles.symbol, tw`ml-5  text-white text-sm font-medium`]}>{symbol}</Text>
                 </View>
 
-                <View style={tw`flex flex-col  bg-blue-700 items-center justify-center`}>
-                    <Text style={[styles.name, tw`ml-3 text-xl  text-white font-extrabold text-green-600`]}>${(amount * currentPrice).toFixed(3)}</Text>
-                    <Text style={[styles.symbol, tw`mt-2 ml-9 text-sm  text-white font-bold`]}>{symbol} {(amount).toFixed(2)}</Text>
+                <View style={tw`flex flex-col  bg-blue-700 items-center justify-center text-left`}>
+                    <Text style={[styles.name, tw` text-xl  text-white font-extrabold text-green-600 text-left`]}>${(amount * currentPrice).toFixed(3)}</Text>
+                    <Text style={[styles.symbol, tw`mt-2 ml-4 text-sm  text-white font-bold text-left`]}>{symbol} {(amount).toFixed(2)}</Text>
                 </View>
 
         </Pressable>
