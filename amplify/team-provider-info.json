@@ -28,7 +28,7 @@
         },
         "cryptoKindomDataFromExternalAPI": {
           "deploymentBucketName": "amplify-cryptokingdom-dev-144358-deployment",
-          "s3Key": "amplify-builds/cryptoKindomDataFromExternalAPI-674f4148767751594379-build.zip"
+          "s3Key": "amplify-builds/cryptoKindomDataFromExternalAPI-344d6271794156307545-build.zip"
         }
       }
     }
