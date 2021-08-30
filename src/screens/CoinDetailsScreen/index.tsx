@@ -228,8 +228,8 @@ const CoinDetailsScreen = () => {
         if(!route.params?.id) {
             return;
         }
-        console.log("userId");
-        console.log(userId);
+        // console.log("userId");
+        // console.log(userId);
 
         try {
             // @ts-ignore
@@ -242,7 +242,7 @@ const CoinDetailsScreen = () => {
                 }
             }));
 
-            console.log("This is the response from filter 🔥", response);
+            // console.log("This is the response from filter 🔥", response);
 
             // @ts-ignore
             if (response.data.listPortfolioCoins.items.length > 0) {
@@ -357,26 +357,26 @@ const CoinDetailsScreen = () => {
                 <View style={tw`flex w-1/3`}>
                     <Text style={tw`text-lg text-white`}>Current Price</Text>
     {/*// @ts-ignore*/}
-                    <Text style={tw`text-white text-xl font-bold`}>$ {coin.currentPrice}</Text>
+                    <Text style={tw`text-white text-xl font-bold`}>$ {coin.currentPrice?.toFixed(3)}</Text>
                 </View>
 
                 <View style={tw`w-1/3 flex flex-row justify-between`}>
                 <View style={tw`mx-8`}>
                     <Text style={tw`text-lg text-white mb-3`}>1 Hour</Text>
     {/*// @ts-ignore*/}
-                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange24H} />
+                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange24H?.toFixed(2)} />
                 </View>
 
                 <View style={tw`mx-2`}>
                     <Text style={tw`text-lg text-white mb-3`}>1 Day</Text>
     {/*// @ts-ignore*/}
-                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange1D} />
+                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange1D?.toFixed(2)} />
                 </View>
 
                 <View style={tw`mx-2`}>
                     <Text style={tw`text-lg text-white mb-3`}>7 Days</Text>
     {/*// @ts-ignore*/}
-                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange7D} />
+                    <PercentageChange style={{fontSize: 15}} value={coin.valueChange7D?.toFixed(2)} />
                 </View>
                 </View>
             </View>
@@ -389,7 +389,7 @@ const CoinDetailsScreen = () => {
                 <View  style={tw`flex `}>
                     <Text  style={tw`text-lg text-white`}>
     {/*// @ts-ignore*/}
-                        <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{portfolioCoin?.amount || 0 }</Text> ($ {coin.currentPrice * (portfolioCoin?.amount || 0 )})
+                        <Text style={tw`font-bold`}>{coin.symbol}</Text> <Text style={tw`text-green-500 font-bold`}>{portfolioCoin?.amount?.toFixed(3) || 0 }</Text> ($ {(coin.currentPrice * (portfolioCoin?.amount?.toFixed(3) || 0 ))})
                     </Text>
                 </View>
             </View>
