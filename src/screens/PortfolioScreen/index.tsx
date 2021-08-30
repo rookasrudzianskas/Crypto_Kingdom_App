@@ -9,7 +9,7 @@ import {API, graphqlOperation} from "aws-amplify";
 import {getUserPortfolio} from "./queries";
 import App from "../../../App";
 import AppContext from "../../utils/AppContext";
-import NumberFormat from 'react-number-format';
+var NumberFormat = require('react-number-format');
 
 
 
