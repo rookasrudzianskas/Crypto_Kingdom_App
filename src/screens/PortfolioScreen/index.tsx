@@ -35,6 +35,7 @@ const PortfolioScreen = (props) => {
             setBalance(response.data.getUser.networth);
             // @ts-ignore
             setPortfolioCoins(response.data.getUser.portfolioCoins.items);
+            // console.log(response.data.getUser.portfolioCoins.items.portfolioCoin.amount);
         } catch (e) {
             console.log(e);
         } finally {
